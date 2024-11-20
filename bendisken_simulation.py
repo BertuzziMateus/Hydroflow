@@ -7,7 +7,7 @@ def bendisken_simulation( fluid, line, temp, ) -> tuple:
     
 
     fluid_simulation = copy(fluid)
-    step = 0.1
+    step = 1
     i = 0
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
 
