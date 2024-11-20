@@ -1,0 +1,175 @@
+
+
+# # def bendiksen( Flow_info,  tubing ) -> list:
+# #     froude = abs(Flow_info.vm) / ((g*tubing.Dh)**(0.5))
+# #     if froude < 3.5: 
+# #         C0 = 1.05 + 0.15*np.sin(tubing.angle)
+# #         vd = ((g*tubing.Dh)**(0.5))*( 0.35*np.sin(tubing.angle) + 0.54*np.cos(tubing.angle) )
+# #     else:
+# #         C0 = 1.4
+# #         vd = 0.35*((g*tubing.Dh)**(0.5))*np.sin(tubing.angle)
+
+
+# #     return [C0,vd]
+
+# # def woldesemayat_ghajar( Flow_info,  tubing) -> list:
+
+# #     Dh = tubing.Dh*3.2808
+# #     sigma = Flow_info.gas_liquid_sigma*0.2048
+# #     g = 32.17
+# #     liquid_rho = Flow_info.liquid_rho*0.0624279606
+# #     gas_rho = Flow_info.gas_rho*0.0624279606
+# #     vsg = Flow_info.vsg*3.28084
+# #     vm  = Flow_info.vm*3.28084
+# #     vsl = Flow_info.vsl*3.28084
+
+       
+# #     K7 = ( (g*Dh*sigma*( 1 + np.cos(tubing.angle) )*( liquid_rho - gas_rho ) ) / (liquid_rho**2))**(0.25)
+
+# #     vd = (( 3.583*( 1 + 1*np.sin(tubing.angle) )**((14.7)/(Flow_info.pressure*0.0001450377)))*(K7))
+
+# #     C0 = ( vsg / vm )*( 1 + (  (vsl/vsg)**( (gas_rho/liquid_rho)**(0.1) )  ) )
+    
+# #     return [C0,vd]
+
+# def bhagwat_ghajar ( Flow_info = classmethod,  tubing = classmethod) -> list:
+#     K8 = ( ( (g*tubing.Dh*( Flow_info.liquid_rho - Flow_info.gas_rho ) ) / Flow_info.liquid_rho )**(0.5))*( 1 / (Flow_info.λl)**(0.5*np.sin(tubing.angle)) )
+
+#     vd = ((Flow_info.liquid_viscosity / Flow_info.gas_viscosity)**(-0.25)) * ( (0.35*np.sin(tubing.angle)) + (0.54*np.cos(tubing.angle)) )*K8
+
+#     C0 = ( ( 1 / ( ( (1+np.cos(tubing.angle))**1.25 ) ))**((Flow_info.λl)**(0.5)) ) + ( 0.18*( Flow_info.vsl / Flow_info.vm )**0.1 )
+
+#     return [C0,vd]
+
+# def drift_infos( Flow_info, tubing, mode = 1 ) -> list[float]:
+
+#     # if mode == 1:
+
+#     #     C0,vd = bendiksen(Flow_info, tubing)
+#     #     vsg = (C0*Flow_info.vm  + vd) * (1 - Flow_info.λl )
+#     #     vsl = ( 1 - (1 - Flow_info.λl )*C0 )*Flow_info.vm - ( (1 - Flow_info.λl )*vd )
+#     #     vm = (vsg+vsl)
+#     #     Hl = vsl / vm              
+#     #     mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#     #     mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+
+#     #     g = 9.81
+
+#     #     froude = vm / ((g*tubing.Dh)**(0.5))
+
+#     #     if froude < 3.5: 
+#     #         C0 = 1.05 + 0.15*np.sin(tubing.angle)
+#     #         vd = ((g*tubing.Dh)**(0.5))*( 0.35*np.sin(tubing.angle) + 0.54*np.cos(tubing.angle) )
+#     #     else:
+#     #         C0 = 1.2
+#     #         vd = 0.35*((g*tubing.Dh)**(0.5))*np.sin(tubing.angle)
+
+
+#     #     vsg = (C0*vm  + vd) * (1 - Hl)
+#     #     vsl = ( 1 - (1 - Hl )*C0 )*vm - ( (1 - Hl )*vd )
+#     #     vm = (vsg+vsl)
+#     #     Hl = vsl / vm
+#     #     mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#     #     mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+
+#     # elif mode == 2:
+
+#     #     C0,vd = woldesemayat_ghajar(Flow_info, tubing)
+#     #     vm = Flow_info.vm*3.28084
+#     #     vsg = (C0*vm  + vd) * (1 - Flow_info.λl )
+#     #     vsl = ( 1 - (1 - Flow_info.λl )*C0 )*vm - ( (1 - Flow_info.λl )*vd )
+#     #     vm = (vsg+vsl)
+#     #     Hl = vsl / vm
+#     #     mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#     #     mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+
+ 
+#     #     liquid_rho = Flow_info.liquid_rho*0.0624279606
+#     #     gas_rho = Flow_info.gas_rho*0.0624279606
+ 
+
+#     #     C0 = ( vsg / vm )*( 1 + (  (vsl/vsg)**( (gas_rho/liquid_rho)**(0.1) )  ) )
+
+    
+#     #     vsg = ((C0*vm  + vd) * (1 - Hl))
+#     #     vsl = (( 1 - (1 - Hl )*C0 )*vm - ( (1 - Hl )*vd ))
+#     #     vm = (vsg+vsl)
+#     #     Hl = vsl / vm
+#     #     mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#     #     mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+#     #     vsg = vsg / 3.28084
+#     #     vm = vm / 3.28084
+#     #     vsl = vsl / 3.28084
+
+
+#     if mode == 3:
+
+#         C0,vd = bhagwat_ghajar(Flow_info, tubing)
+
+#         vsg = (C0*Flow_info.vm  + vd) * (1 - Flow_info.λl )
+#         vsl = ( 1 - (1 - Flow_info.λl )*C0 )*Flow_info.vm - ( (1 - Flow_info.λl )*vd )
+#         vm = (vsg+vsl)
+#         Hl = vsl / vm
+#         mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#         mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+#         g = 9.81
+#         K8 = ( ( (g*tubing.Dh*( Flow_info.liquid_rho - Flow_info.gas_rho ) ) / Flow_info.liquid_rho )**(0.5))*( 1 / (Hl)**(0.5*np.sin(tubing.angle)) )
+#         vd = ((Flow_info.liquid_viscosity / Flow_info.gas_viscosity)**(-0.25)) * ( (0.35*np.sin(tubing.angle)) + (0.54*np.cos(tubing.angle)) )*K8
+#         C0 = ( ( 1 / ( ( (1+np.cos(tubing.angle))**1.25 ) ))**((Hl)**(0.5)) ) + ( 0.18*( vsl / vm )**0.1 )
+
+#         vsg = (C0*vm  + vd) * (1 - Hl )
+#         vsl = ( 1 - (1 - Hl )*C0 )*vm - ( (1 - Hl )*vd )
+#         vm = (vsg+vsl)
+#         Hl = vsl / vm
+#         mix_rho = Hl*Flow_info.liquid_rho + ( 1 - Hl )*Flow_info.gas_rho
+#         mix_viscosity = Hl*Flow_info.liquid_viscosity + ( 1 - Hl )*Flow_info.gas_viscosity
+
+    
+#     return [vsg,vsl,vm,Hl,mix_rho,mix_viscosity,C0,vd]
+
+# def reynolds ( Flow_info, tubing, mode = 1 ) -> float:
+#     vsg,vsl,vm,Hl,mix_rho,mix_viscosity,C0,vd = drift_infos(Flow_info,tubing,mode)
+#     return  ((mix_rho*vm*tubing.Dh)/mix_viscosity)
+
+# def F( Flow_info, tubing, mode = 1 )  -> float:
+#     re = reynolds(Flow_info,tubing,mode)
+
+#     A = (10**6)/re
+
+#     B = (2*10**4)*(tubing.e_Dh)
+
+#     C = (A+B)**(1/3)
+
+#     return 0.0055*(1+C)
+
+# def mass_flow_mix( Flow_info, tubing, mode = 1) -> float:
+#     Hl = drift_infos(Flow_info,tubing,mode)[3]
+#     return ( (Flow_info.flow_liquid_mass * Hl) + Flow_info.flow_gas_mass*(1-Hl) )
+
+# def titulo( Flow_info, tubing, mode = 1 ) -> float:
+#     return (Flow_info.flow_gas_mass/mass_flow_mix(Flow_info,tubing,mode))
+
+# def frictional( Flow_info, tubing , mode = 1) -> float:
+#     vsg,vsl,vm,Hl,mix_rho,mix_viscosity,C0,vd = drift_infos(Flow_info,tubing,mode)
+#     return ( F( Flow_info , tubing, mode)*( (mix_rho*vm**2)/(2*tubing.Dh) ) )
+
+# def gravitational( Flow_info, tubing , mode = 1) -> float:
+#     mix_rho = drift_infos(Flow_info,tubing,mode)[4]
+
+#     return (mix_rho*9.81*np.sin(tubing.angle))
+
+# def ek( Flow_info, tubing, mode = 1) -> float: 
+#     A = (mass_flow_mix(Flow_info,tubing,mode)**2) / (tubing.area**2)
+#     B = (Flow_info.MM) / (8.314462*Flow_info.temperature*Flow_info.gas_rho**2)
+#     return (A*titulo(Flow_info,tubing,mode)*B) 
+
+# def totaL_gradient( Flow_info, tubing, mode = 1) -> float:
+#     return ((frictional(Flow_info,tubing,mode) + gravitational(Flow_info,tubing,mode)) / (1 - ek(Flow_info,tubing,mode) ))
+
+# def kinetic( Flow_info, tubing, mode = 1 ) -> float:
+#     return (ek(Flow_info,tubing,mode)*totaL_gradient(Flow_info,tubing,mode))
