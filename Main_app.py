@@ -613,8 +613,9 @@ def page2():
                     for i in range(len(opcoes)):
                         T,P,var,pump = single_simulation(fluid,lines,temps,pump_line,opcoes[i])
                         variables[i].append([T,P,var,pump])
-
+                    sr.write('a')
                     comp = np.arange(0,len(variables[0][0][2][0]),1)
+                    sr.write(comp)
     
                     for i in range(len(variables)):
                         pressoes[i].append(variables[i][0][2][0])
