@@ -1,0 +1,236 @@
+# import streamlit as st
+# import numpy as np
+# from main.classes_.Data_fluid import *
+# import matplotlib.pyplot as plt
+
+
+
+# st.title("Bem vindo a PRESfil")
+# st.subheader('Preencha abaixo as informações sobre o fluido a ser modelado')
+
+
+
+# P = st.number_input('Pressão do fluido',0.00,700.00,step=0.01)
+# T = st.number_input('Temperatura do fluido',0.0,150.0,step=0.1)
+# Dg = st.number_input('Dg',0.0,1.0,step=0.1)
+# Do = st.number_input('Do',0.0,1.0,step=0.1)
+# if Do == 0.0:
+#     API = st.number_input('Grau API',0.0,50.0,step=0.1)
+# elif Do != 0 :
+#     API = 0 
+# RGL = st.number_input('RGL',1.0,500.0,step=0.1)
+# BSW = st.number_input('BSW',0.0,100.0,step=0.1)
+# rate = st.number_input('Vazão requerida',1000.0,10000.0,step=0.1,format="%.0f")
+
+
+
+# fluid = Fluid_model(
+#     P = P, #bar  
+#     T = T ,#C 
+#     Dg = Dg,
+#     Do = Do,
+#     API = API,
+#     RGL = RGL, # sM^3/sM^3 
+#     BSW = BSW, # %
+#     rate = rate/86400 # m^3 /s
+#     ) 
+
+
+# # st.title("Informações sobre a esquematização do escoamento")
+# # st.subheader('Prencha abaixo as informações sobre os trechos')
+
+
+
+
+# # trechos = st.slider('Quantidade de trechos',1,5)
+# # trechos = np.zeros(trechos)
+# # colunas = st.columns(len(trechos))
+
+
+
+# # trecho = {}
+# # DH = {}
+# # rug_abs = {}
+# # comprimento = {}
+# # angle = {}
+# # temp = {}
+# # T1 = {}
+# # T2 = {}
+# # Altura = {}
+# # TEC = {}
+
+
+
+# # for i in range(len(trechos)):
+# #     trecho[f'Trecho {i+1}'] = []
+# #     DH[f'Diâmetro hidráulico {i+1}'] = []
+# #     rug_abs[f'Rugosidade absoluta {i+1}'] = []
+# #     comprimento[f'Comprimento {i+1}'] = []
+# #     angle[f'Ângulo {i+1}'] = []
+# #     temp[f'Trecho {i+1}'] = []
+# #     T1[f'Temperatura inicial {i+1}'] = []
+# #     T2[f'Temperatura final {i+1}'] = []
+# #     Altura[f'Altura {i+1}'] = []
+# #     TEC[f'TEC {i+1}'] = []
+
+
+
+# # keys_trecho = list(trecho.keys())
+# # keys_DH = list(DH.keys())
+# # keys_rug = list(rug_abs.keys())
+# # keys_compr = list(comprimento.keys())
+# # keys_ang = list(angle.keys())
+# # keys_temps = list(temp.keys())
+# # keys_T1 = list(T1.keys())
+# # keys_T2 = list(T2.keys())
+# # keys_Altura = list(Altura.keys())
+# # keys_TEC = list(TEC.keys())
+
+
+
+# # for i in range(len(trechos)):
+# #     with colunas[i]:
+# #         st.header(keys_trecho[i])
+# #         DH[f'Diâmetro hidráulico {i+1}']  = st.number_input(f'{keys_DH[i] }',0.000000000001,10.0,step=0.01,)
+# #         rug_abs[f'Rugosidade absoluta {i+1}'] = st.number_input(f'{keys_rug[i] }',0.0000001,10.0,step=0.01,format="%.4f")
+# #         comprimento[f'Comprimento {i+1}'] = st.number_input(f'{keys_compr[i] }', step=0.01)
+# #         angle[f'Ângulo {i+1}'] = st.number_input(f'{keys_ang[i] }',0.00,90.0,step=0.01)
+# #         T1[f'Temperatura inicial {i+1}'] = st.number_input(f'{keys_T1 [i] }', 1.0 , 150.0,step=0.01)
+# #         T2[f'Temperatura final {i+1}'] = st.number_input(f'{keys_T2 [i] }', step=0.01)
+# #         Altura[f'Altura {i+1}'] = st.number_input(f'{keys_Altura [i] }',1.0,1000000.0,step=0.01)
+# #         TEC[f'TEC {i+1}'] = st.number_input(f'{keys_TEC [i] }',step=0.01)
+
+
+# # for i in range(len(trechos)):
+# #     trecho[f'Trecho {i+1}'] = pipe(
+# #         Dh = DH[f'Diâmetro hidráulico {i+1}'] * 0.0254, 
+# #         e =  rug_abs[f'Rugosidade absoluta {i+1}'] * 0.0254, 
+# #         L =  comprimento[f'Comprimento {i+1}']  , 
+# #         angle = angle[f'Ângulo {i+1}']
+# #         )
+# #     temp[f'Trecho {i+1}'] = Extern_Temperature(
+# #         T1[f'Temperatura inicial {i+1}'],
+# #         T2[f'Temperatura final {i+1}'],
+# #         Altura[f'Altura {i+1}'],
+# #         TEC[f'TEC {i+1}']
+# #         )
+
+
+# # lines = []
+# # temps = []
+# # for i in range(len(trechos)):
+# #     lines.append(trecho[f'Trecho {i+1}'])
+# #     temps.append(temp[f'Trecho {i+1}'])
+    
+# # pump_line = st.selectbox('Caso necessário em qual trecho está localizada a bomba?',trecho)
+
+# # for i in range(len(trechos)):
+# #     if pump_line == keys_trecho[i]:
+# #         pump_line = i
+
+
+# # st.markdown("""
+# #     <style>
+# #     .stButton > button {
+# #         font-size: 11px !important;
+# #         padding: 10px 327px;
+# #         background-color: #4CAF50;
+# #         color: white;
+# #         border: none;
+# #         border-radius: 10px;
+# #         cursor: pointer;
+# #         white-space: nowrap;
+# #     }
+# #     .stButton > button:hover {
+# #         background-color: #45a049;
+# #     }
+# #     </style>
+# #     """, unsafe_allow_html=True)
+
+
+
+
+
+
+
+# # if st.button("Simular"):
+
+# #     custom_style = {
+# #         'font.family': 'serif',  # Fonte tradicional para trabalhos acadêmicos
+# #         'font.serif': ['Times New Roman'],  # Escolha comum para trabalhos acadêmicos
+# #         'font.size': 12,  # Tamanho adequado para leitura de gráficos
+# #         'axes.labelsize': 14,  # Tamanho dos rótulos dos eixos
+# #         'axes.titlesize': 16,  # Tamanho do título do gráfico
+# #         'axes.titleweight': 'bold',  # Título em negrito para destaque
+# #         'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
+# #         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
+# #         'lines.markersize': 6,  # Tamanho dos marcadores
+# #         'legend.fontsize': 12,  # Tamanho da legenda
+# #         'legend.frameon': False,  # Remove a moldura ao redor da legenda
+# #         'legend.loc': 'best',  # Melhor posição automática para a legenda
+# #         'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
+# #         'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
+# #         'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
+# #     }
+
+# #     with st.container():
+        
+# #         with st.spinner('Simulando...'):
+# #             try:
+# #                 T,P,var,pump = simulation(fluid,lines,temps,pump_line)
+# #                 st.success("Concluido!")
+# #             except:
+# #                 st.error("Erro ao simular")
+
+# #         x = np.arange(0,len(var[0]),1)/10
+
+# #         tab1,tab2,tab3,tab4,tab5,tab6,tab7= st.tabs(["Pressão", "Temperatura","HL","Vsm","Densidade","Viscosidade","Z"])
+
+# #         # plt.rcParams.update(custom_style)
+
+# #         fig1, ax1 = plt.subplots()
+# #         ax1.plot(x, var[0])
+# #         ax1.set_xlabel(f'Comprimento do tubo [$m$]',c='k')
+# #         ax1.set_ylabel(f'Pressão [$bar$]')
+# #         tab1.pyplot(fig1)
+
+# #         fig2, ax2 = plt.subplots()
+# #         ax2.plot(x, var[1])
+# #         ax2.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax2.set_ylabel(f'Temperatura [$ºC$]')
+# #         tab2.pyplot(fig2)
+
+# #         fig3, ax3 = plt.subplots()
+# #         ax3.plot(x, var[2])
+# #         ax3.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax3.set_ylabel(f'Hl')
+# #         tab3.pyplot(fig3)
+
+# #         fig4, ax4 = plt.subplots()
+# #         ax4.plot(x, var[3])
+# #         ax4.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax4.set_ylabel(f'Velocidade da mistura [$m/s$]')
+# #         tab4.pyplot(fig4)
+
+# #         fig5, ax5 = plt.subplots()
+# #         ax5.plot(x, var[6])
+# #         ax5.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax5.set_ylabel(f'Densidade [Kg/m³]')
+# #         tab5.pyplot(fig5)
+
+# #         fig6, ax6 = plt.subplots()
+# #         ax6.plot(x, var[7])
+# #         ax6.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax6.set_ylabel(f'Viscosidade [$Pa.s$]')
+# #         tab6.pyplot(fig6)
+
+# #         fig7, ax7 = plt.subplots()
+# #         ax7.plot(x, var[8])
+# #         ax7.set_xlabel(f'Comprimento do tubo [$m$]')
+# #         ax7.set_ylabel(f'Z')
+# #         tab7.pyplot(fig7)
+
+
+# #         st.write(P,pump)
+
+

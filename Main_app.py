@@ -262,7 +262,9 @@ def page1():
                         elif opcoes[i] == 'PRESfil 2':
                             T,P,var,pump = simulation_2(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
+                        
 
+                    
                     comp = np.arange(0,len(variables[i][0][2][0]),1)
 
                     for i in range(len(variables)):
@@ -613,9 +615,8 @@ def page2():
                     for i in range(len(opcoes)):
                         T,P,var,pump = single_simulation(fluid,lines,temps,pump_line,opcoes[i])
                         variables[i].append([T,P,var,pump])
-                    sr.write('a')
+
                     comp = np.arange(0,len(variables[0][0][2][0]),1)
-                    sr.write(comp)
     
                     for i in range(len(variables)):
                         pressoes[i].append(variables[i][0][2][0])
@@ -963,7 +964,7 @@ def page3():
                             T,P,var,pump = simulation_2(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
 
-                    comp = np.arange(0,len(variables[i][0][2][0]),1)
+                    comp = np.arange(0,len(variables[i][0][2][0]),1)/10
 
     
                     for i in range(len(variables)):
