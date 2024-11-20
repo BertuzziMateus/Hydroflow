@@ -5,8 +5,6 @@ from classes_.Data_fluid import *
 from classes_.Data_pipe import *
 from classes_.Data_temperature import *
 from single_simulation_code import *
-import plotly.tools as pt
-import plotly.graph_objs as go
 import pandas as pd
 from presfil_simulation_code import*
 
