@@ -123,7 +123,7 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
             vars[10].append(frictional_gradient_homo(flow_info,line))
             vars[11].append(kinetic_dl_t(flow_info,line)*total_gradient_homogeneous(flow_info,line))
 
-        print(fluid_simulation.P,λl,fluid_simulation.T)
+        #print(fluid_simulation.P,λl,fluid_simulation.T)
         old_pressure = presure_fluid
  
         if fluid_simulation.P < 0 :
