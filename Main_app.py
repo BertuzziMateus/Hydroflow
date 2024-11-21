@@ -259,7 +259,7 @@ def page1():
                             T,P,var,pump = simulation_1(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
                         
-                        elif opcoes[i] == 'PresFil 2':
+                        elif opcoes[i] == 'PressFil 2':
                             T,P,var,pump = simulation_2(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
                         
