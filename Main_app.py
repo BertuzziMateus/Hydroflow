@@ -284,12 +284,12 @@ def page1():
                         'font.family': 'serif',  # Fonte tradicional para trabalhos acadêmicos
                         'font.serif': ['Times New Roman'],  # Escolha comum para trabalhos acadêmicos
                         'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                        'axes.labelsize': 14,  # Tamanho dos rótulos dos eixos
-                        'axes.titlesize': 16,  # Tamanho do título do gráfico
+                        'axes.labelsize': 10,  # Tamanho dos rótulos dos eixos
+                        'axes.titlesize': 12,  # Tamanho do título do gráfico
                         'axes.titleweight': 'bold',  # Título em negrito para destaque
                         'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                        'xtick.labelsize': 10,  # Tamanho do texto dos ticks no eixo x
+                        'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
                         'legend.fontsize': 12,  # Tamanho da legenda
@@ -637,22 +637,22 @@ def page2():
                         'font.family': 'serif',  # Fonte tradicional para trabalhos acadêmicos
                         'font.serif': ['Times New Roman'],  # Escolha comum para trabalhos acadêmicos
                         'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                        'axes.labelsize': 14,  # Tamanho dos rótulos dos eixos
-                        'axes.titlesize': 16,  # Tamanho do título do gráfico
+                        'axes.labelsize': 10,  # Tamanho dos rótulos dos eixos
+                        'axes.titlesize': 12,  # Tamanho do título do gráfico
                         'axes.titleweight': 'bold',  # Título em negrito para destaque
                         'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                        'xtick.labelsize': 10,  # Tamanho do texto dos ticks no eixo x
+                        'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 10,  # Tamanho da legenda
+                        'legend.fontsize': 12,  # Tamanho da legenda
                         'legend.frameon': False,  # Remove a moldura ao redor da legenda
                         'legend.loc': 'best',  # Melhor posição automática para a legenda
                         'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
                         'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
                         'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
                         }
-                
+                 
                     plt.rcParams.update(custom_style)
 
                     tab1,tab2,tab3,tab4,tab5,tab7 = st.tabs(["Pressão", "Temperatura","HL","Vsm","Densidade","Z"])
@@ -983,12 +983,12 @@ def page3():
                         'font.family': 'serif',  # Fonte tradicional para trabalhos acadêmicos
                         'font.serif': ['Times New Roman'],  # Escolha comum para trabalhos acadêmicos
                         'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                        'axes.labelsize': 14,  # Tamanho dos rótulos dos eixos
-                        'axes.titlesize': 16,  # Tamanho do título do gráfico
+                        'axes.labelsize': 10,  # Tamanho dos rótulos dos eixos
+                        'axes.titlesize': 12,  # Tamanho do título do gráfico
                         'axes.titleweight': 'bold',  # Título em negrito para destaque
                         'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                        'xtick.labelsize': 10,  # Tamanho do texto dos ticks no eixo x
+                        'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
                         'legend.fontsize': 12,  # Tamanho da legenda
