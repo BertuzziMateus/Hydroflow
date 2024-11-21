@@ -202,7 +202,7 @@ def bhagwat_simulation( fluid, line, temp, ) -> tuple:
                 vars[11].append(kinetic_gradient_Bha(flow_info,line))
 
 
-        print(fluid_simulation.P,Hl,fluid_simulation.T)
+        #print(fluid_simulation.P,Hl,fluid_simulation.T)
 
         if fluid_simulation.P < 0 :
             fluid_simulation.P = 0
