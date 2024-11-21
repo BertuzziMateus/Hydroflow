@@ -67,17 +67,17 @@ def page1():
     
     col1,col2 = st.columns(2)
     with col1:
-        op1 = st.checkbox("PRESfil 1",value=True)
+        op1 = st.checkbox("PressFil 1",value=True)
     with col2:
-        op2 = st.checkbox("PRESfil 2 (driftflux)",value=True)
+        op2 = st.checkbox("PressFil 2 (driftflux)",value=True)
 
     
 
     opcoes = []
     if op1 == True:
-        opcoes.append('PRESfil 1')
+        opcoes.append('PressFil 1')
     if op2 == True:
-        opcoes.append('PRESfil 2')
+        opcoes.append('PressFil 2')
 
     st.divider()
     st.subheader('Perfil de temperatura')
@@ -255,11 +255,11 @@ def page1():
             with st.spinner('Simulando...'):
                 try:
                     for i in range(len(opcoes)):
-                        if opcoes[i] == 'PRESfil 1':
+                        if opcoes[i] == 'PressFil 1':
                             T,P,var,pump = simulation_1(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
                         
-                        elif opcoes[i] == 'PRESfil 2':
+                        elif opcoes[i] == 'PresFil 2':
                             T,P,var,pump = simulation_2(fluid,lines,temps,pump_line)
                             variables[i].append([T,P,var,pump])
                         
