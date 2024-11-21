@@ -1,7 +1,7 @@
 
 def Standard_coditions_flow_phase( pvt ) -> list:
 
-    oil_flow_sc = pvt.rate * ( 1 - pvt.BSW )
+    oil_flow_sc = pvt.rate * (1 - pvt.BSW)
     water_flow_sc = pvt.rate * pvt.BSW
 
     if pvt.BSW == 0 :
@@ -14,8 +14,8 @@ def Standard_coditions_flow_phase( pvt ) -> list:
 def Situ_flow_phase( pvt ) -> list:
 
     water,oil,gas = Standard_coditions_flow_phase(pvt)
-    water_flow = water * pvt.Bw
-    oil_flow = oil * pvt.Bo
+    water_flow = water * (pvt.Bw) #*0.158987
+    oil_flow = oil * (pvt.Bo) #*0.158987
 
     if pvt.BSW == 0 :
         gas_flow = (pvt.RGO - pvt.Rsw)*pvt.Bg*oil

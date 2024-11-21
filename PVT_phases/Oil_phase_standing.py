@@ -102,38 +102,27 @@ def Oil_Density_standing( fluid_model ) -> float: #lb/ft**3
     return po # *16.01846337396014
 
 def Dead_Oil_Viscosity_standing( fluid_model ) -> float:#cP
-    T = C_to_R(fluid_model)
-    A = 10**(0.43 + (8.33 / fluid_model.API))
-    U_od = 0.32 + ( (1.8 * 10**7) / (fluid_model.API**4.53) ) * (360 / (T - 260))**A
+    A = 10**(0.43 + 8.33/fluid_model.API) 
+    T = fluid_model.T * (9/5) + 491.67
+    U_od = 0.32 + ( (1.8*10**7)/(fluid_model.API**4.53))*(360/(T-260) )**A
     return U_od
 
 def Oil_Viscosity_standing( fluid_model ) -> float:#cP
+
     pressure = Bar_to_psia(fluid_model)
     Pb = Pb_standing(fluid_model)
-    if pressure <= Pb:
+    R_s = Rs_standing(fluid_model)
 
-        R_s = Rs_standing(fluid_model)
-        a = 10**(((-7.4 * 10**-4) * R_s) + ((2.2 * 10**-7) * (R_s**2)))
+    b1 =  ( (0.68) / 10**((8.62e-5)*R_s))
+    b2 = ( (0.25) / 10**((1.1e-3)*R_s))
+    b3 = ( (0.062) / 10**((3.74e-3)*R_s))
+    b = b1 + b2 + b3
+    a = 10**((R_s*-7.4e-4)+((2.2e-7)*(R_s**2)))
+    U_o = a * Dead_Oil_Viscosity_standing(fluid_model)**b
 
-        b = (0.68 / 10**((8.62 * 10**-5) * R_s)) + (0.25 / 10**((1.1 * 10**-3) * R_s)) + (0.062 / 10**((3.74 * 10**-3) * R_s))
-
-        U_o = a *Dead_Oil_Viscosity_standing(fluid_model)**b
-            
-    else:
-        
-        R_s = fluid_model.RGO*5.614583333333333
-        a = 10**(((-7.4 * 10**-4) * R_s) + ((2.2 * 10**-7) * (R_s**2)))
-
-        b = (0.68 / 10**((8.62 * 10**-5) * R_s)) + (0.25 / 10**((1.1 * 10**-3) * R_s)) + (0.062 / 10**((3.74 * 10**-3) * R_s))
-
-        U_ob = a *Dead_Oil_Viscosity_standing(fluid_model)**b
-
-
-
-        term1 = 0.001 * (pressure - Pb)
-        term2 = 0.024 * (U_ob ** 1.6) + 0.038 * (U_ob ** 0.56)
-        U_o = U_ob * term1 * term2
-
+    if pressure > Pb:    
+        U_o = U_o + (0.001 * (pressure - Pb) * ((0.024 * U_o ** 1.6) + (0.038 *U_o ** 0.56)))
+   
     return U_o
 
 
