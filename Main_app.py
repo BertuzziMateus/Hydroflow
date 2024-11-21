@@ -292,7 +292,7 @@ def page1():
                         'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 12,  # Tamanho da legenda
+                        'legend.fontsize': 10,  # Tamanho da legenda
                         'legend.frameon': False,  # Remove a moldura ao redor da legenda
                         'legend.loc': 'best',  # Melhor posição automática para a legenda
                         'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
@@ -645,7 +645,7 @@ def page2():
                         'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 12,  # Tamanho da legenda
+                        'legend.fontsize': 10,  # Tamanho da legenda
                         'legend.frameon': False,  # Remove a moldura ao redor da legenda
                         'legend.loc': 'best',  # Melhor posição automática para a legenda
                         'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
@@ -991,7 +991,7 @@ def page3():
                         'ytick.labelsize': 10,  # Tamanho do texto dos ticks no eixo y
                         'lines.linewidth': 2,  # Espessura das linhas dos gráficos
                         'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 12,  # Tamanho da legenda
+                        'legend.fontsize': 10,  # Tamanho da legenda
                         'legend.frameon': False,  # Remove a moldura ao redor da legenda
                         'legend.loc': 'best',  # Melhor posição automática para a legenda
                         'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
