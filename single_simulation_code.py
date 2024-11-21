@@ -70,10 +70,10 @@ def single_pump_value(fluid, lines, temps, line_pump, mode:str)-> float:
                         raise ValueError("Your fluid don't came to the pump")
                     break
 
-            if pressure > 1:
+            if pressure > 5:
                 codition  = False
 
-        while pressure > 5:
+        while codition == False:
             fluid_simulation = copy(fluid)
             for i, line in enumerate(lines):
                 temp = temps[i] if temps is not None else None
@@ -95,18 +95,12 @@ def single_pump_value(fluid, lines, temps, line_pump, mode:str)-> float:
                 fluid_simulation.T,fluid_simulation.P = temperature,pressure
 
             if pressure > 50:
-                incre -= 25
-            elif pressure > 25:
                 incre -= 10
-            elif pressure > 15:
+            elif pressure > 20:
                 incre -= 1
-            elif pressure > 10:
-                incre -= 0.5
-            elif pressure > 6:
-                incre -= 0.2
-            elif pressure > 5:
-                incre -= 0.1
-            else:
+            if pressure == 0 or np.isnan(pressure) == True:
+                incre += 2
+            elif pressure < 20:
                 break
 
     return incre

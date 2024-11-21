@@ -72,16 +72,12 @@ def pump_value_1(fluid, lines, temps, line_pump) -> float:
                 fluid_simulation.T, fluid_simulation.P = temperature, pressure
 
             if pressure > 50:
-                incre -= 25
-            elif pressure > 25:
                 incre -= 10
-            elif pressure > 15:
+            elif pressure > 20:
                 incre -= 1
-            elif pressure > 10:
-                incre -= 0.5
-            elif pressure > 5:
-                incre -= 0.1
-            else:
+            if pressure == 0 or np.isnan(pressure) == True:
+                incre += 2
+            elif pressure < 20:
                 break
 
     return incre
@@ -193,7 +189,7 @@ def pump_value_2(fluid, lines, temps, line_pump) -> float:
             else:
                 codition  = False
 
-        while codition ==  False:
+        while pressure >10: 
             fluid_simulation = copy(fluid)
             for i in range(len(lines)):
                 line = lines[i]
@@ -211,21 +207,14 @@ def pump_value_2(fluid, lines, temps, line_pump) -> float:
 
                 fluid_simulation.T,fluid_simulation.P = temperature,pressure
 
-            if pressure > 50: 
-                incre -= 25
-            if pressure > 25: 
+            if pressure > 50:
                 incre -= 10
-            elif pressure > 15: 
+            elif pressure > 20:
                 incre -= 1
-            elif pressure > 10: 
-                incre -= 0.5
-            elif pressure > 5: 
-                incre -= 0.1
-
             if pressure == 0 or np.isnan(pressure) == True:
-                incre += 7
-            elif pressure <= 5 and pressure > 1: 
-                codition  = True        
+                incre += 2
+            elif pressure < 20:
+                break
     
     return incre
 

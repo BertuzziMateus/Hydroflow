@@ -10,7 +10,7 @@ def HB_simulation( fluid, line, temp,) -> tuple:
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
 
 
-    while round(i,3) != line.L:
+    while round(i,3) != line.L+step:
 
         fluid_simulation.T_pr = ( fluid_simulation.T*(9/5) + 491.67 ) / fluid.T_pc # rankine / rankine
         fluid_simulation.P_pr = (fluid_simulation.P*14.503773800722)/fluid.P_pc #psia/psia
