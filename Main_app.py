@@ -10,7 +10,7 @@ from presfil_simulation_code import*
 
 def page1():
  
-    st.title("Bem vindo a PRESfil")
+    st.title("Bem vindo a PressFil")
     st.divider()
     st.markdown(
         """
@@ -1099,9 +1099,9 @@ def page3():
 
 
 pg = st.navigation([
-    st.Page(page1, title="Como usar o programa", icon=":material/favorite:"),
+    st.Page(page1, title="PressFil", icon=":material/favorite:"),
     st.Page(page2, title="Simulação de um modelo", icon=":material/favorite:"),
-    st.Page(page3,title='Simulação PRESFil',icon=":material/favorite:"),
+    st.Page(page3,title='Simulação PressFil',icon=":material/favorite:"),
 ])
 
 pg.run()
