@@ -191,7 +191,7 @@ def briggs_simulation( fluid, line, temp)  -> tuple:
 
          
         
-        print(fluid_simulation.P,Hl,fluid_simulation.T)
+        #print(fluid_simulation.P,Hl,fluid_simulation.T)
         if fluid_simulation.P < 1 :
             fluid_simulation.P = 0
             break
