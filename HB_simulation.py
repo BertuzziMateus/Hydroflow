@@ -213,6 +213,9 @@ def HB_simulation( fluid, line, temp,) -> tuple:
         if fluid_simulation.P < 0 :
             fluid_simulation.P = 0
             break
+        if np.isnan(fluid_simulation.P) == True:
+            fluid_simulation.P = 0
+            break
         # if old_pressure < lose_pressure:
         #     fluid_simulation.P = 0
         #     break
