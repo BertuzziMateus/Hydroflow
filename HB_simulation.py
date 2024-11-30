@@ -208,14 +208,14 @@ def HB_simulation( fluid, line, temp,) -> tuple:
 
 
                 
-        old_pressure = presure_fluid
+        # old_pressure = presure_fluid
         
         if fluid_simulation.P < 0 :
             fluid_simulation.P = 0
             break
-        if old_pressure < lose_pressure:
-            fluid_simulation.P = 0
-            break
+        # if old_pressure < lose_pressure:
+        #     fluid_simulation.P = 0
+        #     break
 
         print(fluid_simulation.P,Hl,fluid_simulation.T)
 
