@@ -104,13 +104,13 @@ def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
         if mode == "Homogeneous":
             temperature,pressure,var = homogeneous_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # PRESSÃO 
-                vars[1].append(var[1][j]) # TEMPERATURA
+                vars[0].append(var[0][j]) # pressure 
+                vars[1].append(var[1][j]) # TEMP
                 vars[2].append(var[2][j]) # HL
                 vars[3].append(var[3][j]) # VM
                 vars[4].append(var[4][j]) # VSG
                 vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIDADE
+                vars[6].append(var[6][j]) # M_DENSIty
                 vars[7].append(var[7][j]) # M_VISC
                 vars[8].append(var[8][j]) # Z
                 vars[9].append(var[9][j]) # grav
@@ -120,13 +120,13 @@ def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
         if mode == "Hagedorn":
             temperature,pressure,var = HB_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # PRESSÃO 
-                vars[1].append(var[1][j]) # TEMPERATURA
+                vars[0].append(var[0][j]) # pressure 
+                vars[1].append(var[1][j]) # TEMP
                 vars[2].append(var[2][j]) # HL
                 vars[3].append(var[3][j]) # VM
                 vars[4].append(var[4][j]) # VSG
                 vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIDADE
+                vars[6].append(var[6][j]) # M_DENSIty
                 vars[7].append(var[7][j]) # M_VISC
                 vars[8].append(var[8][j]) # Z
                 vars[9].append(var[9][j]) # grav
@@ -136,13 +136,13 @@ def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
         if mode == "Beggs_Brill":
             temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # PRESSÃO 
-                vars[1].append(var[1][j]) # TEMPERATURA
+                vars[0].append(var[0][j]) # pressure
+                vars[1].append(var[1][j]) # TEMP
                 vars[2].append(var[2][j]) # HL
                 vars[3].append(var[3][j]) # VM
                 vars[4].append(var[4][j]) # VSG
                 vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIDADE
+                vars[6].append(var[6][j]) # M_DENSIty
                 vars[7].append(var[7][j]) # M_VISC
                 vars[8].append(var[8][j]) # Z
                 vars[9].append(var[9][j]) # grav
@@ -153,13 +153,13 @@ def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
         if mode == "Bendisken":
             temperature,pressure,var = bendisken_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # PRESSÃO 
-                vars[1].append(var[1][j]) # TEMPERATURA
+                vars[0].append(var[0][j]) # pressure 
+                vars[1].append(var[1][j]) # TEMP
                 vars[2].append(var[2][j]) # HL
                 vars[3].append(var[3][j]) # VM
                 vars[4].append(var[4][j]) # VSG
                 vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIDADE
+                vars[6].append(var[6][j]) # M_DENSIty
                 vars[7].append(var[7][j]) # M_VISC
                 vars[8].append(var[8][j]) # Z
                 vars[9].append(var[9][j]) # grav
@@ -169,13 +169,13 @@ def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
         if mode == "Bhagwat":
             temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # PRESSÃO 
-                vars[1].append(var[1][j]) # TEMPERATURA
+                vars[0].append(var[0][j]) # pressure 
+                vars[1].append(var[1][j]) # TEMP
                 vars[2].append(var[2][j]) # HL
                 vars[3].append(var[3][j]) # VM
                 vars[4].append(var[4][j]) # VSG
                 vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIDADE
+                vars[6].append(var[6][j]) # M_DENSIty
                 vars[7].append(var[7][j]) # M_VISC
                 vars[8].append(var[8][j]) # Z
                 vars[9].append(var[9][j]) # grav

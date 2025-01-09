@@ -415,15 +415,6 @@ def page2():
 
     st.title('Fill in the necessary information for the fluid below ')
 
-    # ======================================
-    # This section collects user inputs for fluid parameters, including pressure (P), temperature (T), 
-    # relative densities of gas (Dg) and oil (Do), oil API (when Do = 0), gas-liquid ratio (RGL), 
-    # Basic Sediment and Water (BSW), and required flow rate (rate),
-    # with specific limits and formats for each variable. This part is responsible for running the Black-oil simulation.
-    # ======================================
-
-
-
     st.divider()
 
     P = st.number_input('Fluid pressure (bar)',0.00,700.00,step=0.1,format="%.3f")
@@ -855,15 +846,6 @@ def page2():
 def page3():
     
     st.title('Fill in the necessary information for the fluid below ')
-
-    # ======================================
-    # This section collects user inputs for fluid parameters, including pressure (P), temperature (T), 
-    # relative densities of gas (Dg) and oil (Do), oil API (when Do = 0), gas-liquid ratio (RGL), 
-    # Basic Sediment and Water (BSW), and required flow rate (rate),
-    # with specific limits and formats for each variable. This part is responsible for running the Black-oil simulation.
-    # ======================================
-
-
 
     st.divider()
 
