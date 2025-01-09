@@ -6,109 +6,86 @@ from homogeneous_simulation import *
 from copy import copy
 
 
-def single_pump_value(fluid, lines, temps, line_pump, mode:str)-> float:
+def single_pump_value_teste(fluid, lines, temps, line_pump, mode:str)-> float:
 
-    incre = 0
-    codition  = True
     fluid_simulation = copy(fluid)
+    temps = None
+    lines_copy = copy(lines)
 
-    for i in range(len(lines)):
-        line = lines[i]
-        if temps != None:
-            temp = temps[i]
+    if line_pump == 0:
+        lines = lines[::-1]
+        if (mode in ['Bendisken', 'Bhagwat']): 
+            fluid_simulation.P = 25
         else:
-            temp = None
+            fluid_simulation.P = 15
 
-        if mode == "Homogeneous":
-            temperature,pressure,var = homogeneous_simulation(fluid_simulation,line,temp)
-        elif mode == "Hagedorn":
-            temperature,pressure,var = HB_simulation(fluid_simulation,line,temp)
-        elif mode == "Beggs_Brill":
-            temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
-        elif mode == "Bendisken":
-            temperature,pressure,var = bendisken_simulation(fluid_simulation,line,temp)
-        elif mode == "Bhagwat":
-            temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
+        for line in lines:
+            if mode == 'Homogeneous':
+                pressure,temperature = homogeneous_simulation_pump(fluid_simulation,line,temps)
+            if mode == 'Beggs_Brill':
+                pressure,temperature = briggs_simulation_pump(fluid_simulation,line,temps)
+            if mode  ==  'Hagedorn':
+                pressure,temperature = HB_simulation_pump(fluid_simulation,line,temps)
+                pressure *= 1.025
+            if mode ==  'Bendisken':
+                pressure,temperature = bendisken_simulation_pump(fluid_simulation,line,temps)
+            if mode == 'Bhagwat':
+                pressure,temperature = bhagwat_simulation_pump(fluid_simulation,line,temps)
+            fluid_simulation.P,fluid_simulation.T = pressure,temperature
 
-        fluid_simulation.T,fluid_simulation.P = temperature,pressure
-                
-        if pressure <= 0 :
-            break
+        pump = fluid_simulation.P - fluid.P
 
-    if pressure > 0 :
-        pass
+        if pump < 0 :
+            pump = 0
     else:
-        incre = 50
-        while codition == True:
-            fluid_simulation = copy(fluid)
-            for i in range(len(lines)):
-                line = lines[i]
-                if temps != None:
-                    temp = temps[i]
-                else:
-                    temp = None
+        line = 0 
+        while line != line_pump:
+            if mode == 'Homogeneous':
+                temperature,pressure,vars = homogeneous_simulation(fluid_simulation,lines[line],temps)
+            if mode == 'Beggs_Brill':
+                temperature,pressure,vars = briggs_simulation(fluid_simulation,lines[line],temps)
+            if mode  == 'Hagedorn':
+                temperature,pressure,vars = HB_simulation(fluid_simulation,lines[line],temps)
+            if mode == 'Bendisken':
+                temperature,pressure,vars = bendisken_simulation(fluid_simulation,lines[line],temps)
+            if mode == 'Bhagwat':
+                temperature,pressure,vars = bhagwat_simulation(fluid_simulation,lines[line],temps)
+            fluid_simulation.P,fluid_simulation.T = pressure,temperature
+            if fluid_simulation.P == 0 :
+                raise ValueError('Your fluid do not came to the pump')
 
-                if i == line_pump:
-                    fluid_simulation.P = fluid_simulation.P + incre
-                    
-                if mode == "Homogeneous":
-                    temperature,pressure,var = homogeneous_simulation(fluid_simulation,line,temp)
-                elif mode == "Hagedorn":
-                    temperature,pressure,var = HB_simulation(fluid_simulation,line,temp)
-                elif mode == "Beggs_Brill":
-                    temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
-                elif mode == "Bendisken":
-                    temperature,pressure,var = bendisken_simulation(fluid_simulation,line,temp)
-                elif mode == "Bhagwat":
-                    temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)   
+            lines_copy.pop(0)
+            line += 1
+        fluid_pump  = copy(fluid)
+        if (mode in ['Bendisken', 'Bhagwat']):
+            fluid_pump.P = 25
+        else:        
+            fluid_pump.P = 15
+        lines_copy = lines_copy[::-1]
+        for line in lines_copy:
+            if mode == 'Homogeneous':
+                pressure,temperature = homogeneous_simulation_pump(fluid_pump,line,temps)
+            if mode == 'Beggs_Brill':
+                pressure,temperature = briggs_simulation_pump(fluid_pump,line,temps)
+            if mode == 'Hagedorn':
+                pressure,temperature = HB_simulation_pump(fluid_pump,line,temps)
+                #pressure *= 1.025
+            if mode == 'Bendisken':
+                pressure,temperature = bendisken_simulation_pump(fluid_pump,line,temps)
+            if mode == 'Bhagwat':
+                pressure,temperature = bhagwat_simulation_pump(fluid_pump,line,temps)
+            fluid_pump.P,fluid_pump.T = pressure,temperature    
+        pump = fluid_pump.P - fluid_simulation.P
+        if pump < 0 :
+            pump = 0
 
-                fluid_simulation.T,fluid_simulation.P = temperature,pressure
 
-                if pressure == 0:
-                    incre += 50
-                    if line_pump > i:
-                        raise ValueError("Your fluid don't came to the pump")
-                    break
-
-            if pressure > 5:
-                codition  = False
-
-        while codition == False:
-            fluid_simulation = copy(fluid)
-            for i, line in enumerate(lines):
-                temp = temps[i] if temps is not None else None
-                if i == line_pump:
-                    fluid_simulation.P += incre
-
-                if mode == "Homogeneous":
-                    temperature,pressure,var = homogeneous_simulation(fluid_simulation,line,temp)
-                elif mode == "Hagedorn":
-                    temperature,pressure,var = HB_simulation(fluid_simulation,line,temp)
-                elif mode == "Beggs_Brill":
-                    temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
-                elif mode == "Bendisken":
-                    temperature,pressure,var = bendisken_simulation(fluid_simulation,line,temp)
-                elif mode == "Bhagwat":
-                    temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
-                
-
-                fluid_simulation.T,fluid_simulation.P = temperature,pressure
-
-            if pressure > 50:
-                incre -= 10
-            elif pressure > 20:
-                incre -= 1
-            if pressure == 0 or np.isnan(pressure) == True:
-                incre += 2
-            elif pressure < 20:
-                break
-
-    return incre
+    return pump
 
 
 def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
 
-    incre = single_pump_value(fluid,lines,temps,line_pump,mode)
+    incre = round(single_pump_value_teste(fluid,lines,temps,line_pump,mode)*1.05)
     fluid_simulation = copy(fluid)
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
     

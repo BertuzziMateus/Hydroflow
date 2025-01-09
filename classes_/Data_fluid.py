@@ -18,9 +18,9 @@ class Fluid_model:
         self.BSW = BSW
         self.rate = rate
             
-        Ma = 0.02897* Dg #kg/mol
+        Ma = 0.0289655* Dg #kg/mol
 
-        
+    
         if (Do or API) != 0 :
             if API == 0 : 
                 API = (141.5 / Do) - 131.5

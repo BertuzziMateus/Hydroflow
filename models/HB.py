@@ -227,14 +227,24 @@ def HL_HB( Flow_info, tubing ) -> float:
 
     hl = y_pred*psi(Flow_info, tubing)
 
+    if hl > 1:
+        hl = 1
+    elif hl < 0:
+        hl = 0 
+
     return hl
 
-def slip_viscosity( Flow_info, tubing) -> float:
+def slip_viscosity_Hb( Flow_info, tubing) -> float:
     Hl = HL_HB(Flow_info,tubing)
     return  ( (Flow_info.liquid_viscosity**Hl) * ( (Flow_info.gas_viscosity)**(1-Hl) ) )
 
 def reynolds_HB(Flow_info, tubing) -> float:
-    return  ( (Flow_info.mix_rho*Flow_info.vm*tubing.Dh) / (slip_viscosity(Flow_info,tubing)) )
+
+    a = slip_viscosity_Hb(Flow_info,tubing)
+    
+    reynolds = (Flow_info.mix_rho*Flow_info.vm*tubing.Dh) / (slip_viscosity_Hb(Flow_info,tubing)) 
+    
+    return  reynolds
 
 def FD_HB(Flow_info, tubing) -> float:
     re = reynolds_HB(Flow_info,tubing)

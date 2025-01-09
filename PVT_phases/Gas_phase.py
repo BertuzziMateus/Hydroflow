@@ -2,9 +2,6 @@ import numpy as np
 from conversions import *
 
 
-def z_Papay( Model ) -> float:
-    return 1 - (3.53*Model.P_pr / (10**(0.9813*Model.T_pr))) + (0.274*Model.P_pr**2 / (10**(0.8157*Model.T_pr))) 
-
 def z( Model  ) -> float:
 
     A = 1.39*(Model.T_pr - 0.92)**(1/2) - 0.36*Model.T_pr - 0.101
@@ -17,12 +14,15 @@ def z( Model  ) -> float:
 
 
 def Bg( Model ) -> float: # m3/sm3
-    T = C_to_R(Model)
-    P = Bar_to_psia(Model)
-    return (((14.7)/(520))*z(Model)*((T)/(P)))
+    T = C_to_K(Model)
+    P = Bar_to_pa(Model)/1000
+    bg_m3 = 0.350958*((z(Model)*T)/P)
+    #bg_ft3 = (((14.7)/(520))*z(Model)*((T)/(P)))
+    return bg_m3
 
-def Gas_density( Model  ) -> float: # lb/ft**3
-    return ( (Bar_to_pa(Model)*Model.Ma) / (z(Model)*8.314*C_to_K(Model)) ) * 0.062428
+def Gas_density( Model  ) -> float: #kg/m³
+    density =  (Bar_to_pa(Model)*Model.Ma) / (z(Model)*8.314*C_to_K(Model)) 
+    return density
 
 def Eg( Model ) -> float:
     return 1 / Bg(Model)

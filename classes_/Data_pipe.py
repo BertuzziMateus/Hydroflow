@@ -12,7 +12,7 @@ class pipe:
         self.Dh = Dh
         self.e = e
         self.direction = direction
-        self.angle = round((angle)* (np.pi / 180),2)
+        self.angle = (angle)* (np.pi / 180)
         self.area = (np.pi * (Dh**2 )) /4
         self.e_Dh = e / Dh 
         self.L = L
