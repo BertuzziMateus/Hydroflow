@@ -56,7 +56,7 @@ def bhagwat_simulation( fluid, line, temp, ) -> tuple:
             if fluid_simulation.P > PB:
                 mass_flow = flow_liquid_mass*λl + flow_gas_mass*( 1 - λl)
                 cp_mix = ( ( liquid_cp* λl ) + cp_gas(fluid_simulation)*( 1 - λl) )*1000
-                if line.direction == "Descendente":
+                if line.direction == "Downhill":
                     angle_temp = line.angle*-1
                 else:
                     angle_temp = line.angle

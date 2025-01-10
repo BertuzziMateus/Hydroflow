@@ -48,7 +48,7 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
             t_inf = (round((temp.a*H) + temp.T1,2))
             mass_flow = flow_liquid_mass*λl + flow_gas_mass*( 1 - λl)
             cp_mix = ( ( liquid_cp* λl ) + cp_gas(fluid_simulation)*( 1 - λl) )*1000
-            if line.direction == "Descendente":
+            if line.direction == "Downhill":
                 angle_temp = line.angle*-1
             else:
                 angle_temp = line.angle
