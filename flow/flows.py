@@ -19,7 +19,7 @@ def Situ_flow_phase( pvt ) -> list:
     oil_flow = oil_sc * (pvt.Bo) 
 
     if pvt.BSW == 0 :
-        gas_flow = (pvt.RGO - pvt.Rsw)*pvt.Bg*oil_sc
+        gas_flow = (pvt.RGO - pvt.Rs)*pvt.Bg*oil_sc
     elif pvt.BSW > 0:
         gas_flow = ( gas_sc - oil_sc*pvt.Rs - water_sc*pvt.Rsw)*pvt.Bg
 
