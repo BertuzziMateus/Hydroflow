@@ -117,7 +117,7 @@ def friction_gradient_HB( Flow_info, tubing) -> float:
     return ( FD_HB( Flow_info , tubing  ) * ( ( Flow_info.mix_rho**2 * Flow_info.vm**2 ) / (2*tubing.Dh*mix_slip_density_HB(Flow_info, tubing)) ) )
 
 def gravitational_gradient_HB( Flow_info, tubing) -> float:
-    if tubing.direction == "Descendente":
+    if tubing.direction == "Downhill":
         angle = tubing.angle*-1
     else:
         angle = tubing.angle

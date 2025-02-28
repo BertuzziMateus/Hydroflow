@@ -16,7 +16,7 @@ def frictional_gradient_homo(Flow_info, line) -> float:
     return ( F_homo(Flow_info, line )*( (Flow_info.mix_rho*Flow_info.vm**2)/(2*line.Dh) ) )
 
 def gravitational_gradient_homo(Flow_info, line) -> float:
-    if line.direction == "Descendente":
+    if line.direction == "Downhill":
         angle = line.angle*-1
     else:
         angle = line.angle

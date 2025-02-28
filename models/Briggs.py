@@ -271,7 +271,7 @@ def friction_gradient_briggs( Flow_info ,  tubing ) -> float:
     return friction
 
 def gravitational_gradient_briggs( Flow_info ,  tubing ) -> float:
-    if tubing.direction == "Descendente":
+    if tubing.direction == "Downhill":
         angle = tubing.angle*-1
     else:
         angle = tubing.angle

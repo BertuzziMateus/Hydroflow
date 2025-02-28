@@ -6,7 +6,7 @@ g = 9.81
 
 def bhagwat_ghajar ( Flow_info,  tubing) -> list:
 
-    if tubing.direction == "Descendente":
+    if tubing.direction == "Downhill":
         angle = tubing.angle*-1
     else:
         angle = tubing.angle
@@ -64,7 +64,7 @@ def frictional_gradient_Bha( Flow_info, tubing) -> float:
 
 def gravitational_gradient_Bha( Flow_info, tubing ) -> float:
     mix_rho = drift_infos_bha(Flow_info,tubing)[4]
-    if tubing.direction == "Descendente":
+    if tubing.direction == "Downhill":
         angle = tubing.angle*-1
     else:
         angle = tubing.angle
