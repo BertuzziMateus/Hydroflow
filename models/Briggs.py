@@ -8,8 +8,8 @@ def Froude( Flow_info, tubing ) -> float:
 def flow_parameters( Flow_info ) -> list:
     λl = Flow_info.λl
     L1 = 316 * λl**0.302
-    L2 = 0.0009252 * λl**-2.468
-    L3 = 0.1 * λl**-1.468
+    L2 = 0.000925 * λl**-2.468
+    L3 = 0.1 * λl**-1.452
     L4 = 0.5 * λl**-6.738
     return[L1,L2,L3,L4]
 
@@ -18,17 +18,51 @@ def flow_type( Flow_info, tubing ) -> str :
     λl = Flow_info.λl
     froude = Froude(Flow_info, tubing )
     L1,L2,L3,L4 = flow_parameters(Flow_info)
-    if (λl < 0.4  and froude >= L1)  or (λl >= 0.4 and froude > L4) :
-        flow_type = 'distributed'
-    elif (λl < 0.01 and froude < L1)  or (λl >= 0.01 and froude < L2) :
+
+    # -------------------Segregated--------------------- #
+
+    if λl < 0.01 and froude  < L1:
         flow_type = 'segregated'
-    elif ( λl >= 0.01  and  L2 <= froude <= L3 ):
+    elif λl >= 0.01 and froude < L2:
+        flow_type = 'segregated'
+
+    # -------------------Transition--------------------- #
+    elif λl >= 0.01 and L2 <= froude <= L3:
         flow_type = 'transition'
-    elif ( 0.01 <= λl < 0.4  and  L3 <= froude <= L1 ) or  (λl >= 0.4 and L3 <= froude <= L4):
+
+    # -------------------Intermittent--------------------- #
+
+    elif 0.01 <= λl < 0.4 and L3 < froude <= L1:
         flow_type = 'intermittent'
+    elif λl >= 0.4 and L3 < froude <= L4:
+        flow_type = 'intermittent'
+    
+    # -------------------Distributed--------------------- #
+
+    elif  λl < 0.4 and froude >= L1:
+        flow_type = 'distributed'
+    elif λl >= 0.4 and froude > L4:
+        flow_type = 'distributed'
+    
+    # -------------------Out of Range--------------------- #
     else:
-        raise ValueError('Out range')
+        raise ValueError('Out of range')
+    
     return flow_type
+    
+
+
+    # if (λl < 0.4  and froude >= L1)  or (λl >= 0.4 and froude >= L4) :
+    #     flow_type = 'distributed'
+    # elif (λl < 0.01 and froude < L1)  or (λl >= 0.01 and froude < L2) :
+    #     flow_type = 'segregated'
+    # elif ( λl >= 0.01  and  L2 <= froude <= L3 ):
+    #     flow_type = 'transition'
+    # elif ( 0.01 <= λl < 0.4  and  L3 < froude <= L1 ) or  (λl >= 0.4 and L3 < froude <= L4):
+    #     flow_type = 'intermittent'
+    # else:
+    #     raise ValueError('Out range')
+    # return flow_type
 
 def segregated_liquid_holdup( Flow_info , tubing ) -> float:
     λl = Flow_info.λl
@@ -36,7 +70,6 @@ def segregated_liquid_holdup( Flow_info , tubing ) -> float:
     b = 0.4846
     c = 0.0868
     Hlo = (a*(λl**b)) / (Froude(Flow_info, tubing)**c)
-    
     
     if Hlo < λl:
         Hlo  = λl
@@ -51,7 +84,6 @@ def intermittent_liquid_holdup( Flow_info, tubing) -> float:
     c = 0.0173
     Hlo = (a*(λl**b)) / (Froude(Flow_info, tubing)**c)
     
-    
     if Hlo < λl:
         Hlo  = λl
 
@@ -64,7 +96,6 @@ def distributed_liquid_holdup( Flow_info, tubing ) -> float:
     b = 0.5824
     c = 0.0609
     Hlo = (a*(λl**b)) / (Froude(Flow_info, tubing)**c)
-    
     
     if Hlo < λl:
         Hlo  = λl
@@ -229,10 +260,7 @@ def liquid_Holdup( Flow_info , tubing ) -> float :
     elif Hl < 0:
         Hl = 0
 
-    if Hl < Flow_info.λl:
-        Hl = Flow_info.λl
-    
-       
+      
     return Hl
 
 
