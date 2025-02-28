@@ -703,13 +703,7 @@ def page2():
 
                     fig1, ax1 = plt.subplots()
                     for i in range(len(pressures)):
-                        ax1.plot(comp,pressures[i][0],label=f'Temperature with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(pressures):
-                        #     ax1.scatter(comp[-1],pressures[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax1.scatter(comp[0],pressures[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax1.scatter(comp[-1],pressures[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax1.scatter(comp[0],pressures[0][0][0],c='#87CEEB',zorder=5)
+                        ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
                     ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
                     ax1.set_xlabel(f'Lenght pipe [$m$]')
                     ax1.set_ylabel(f'Pressure [$bar$]')
@@ -723,12 +717,6 @@ def page2():
                     fig2, ax2 = plt.subplots()
                     for i in range(len(temperatures)):
                         ax2.plot(comp,temperatures[i][0],label=f'Temperature with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(temperatures):
-                        #     ax2.scatter(comp[-1],temperatures[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax2.scatter(comp[0],temperatures[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax2.scatter(comp[-1],temperatures[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax2.scatter(comp[0],temperatures[0][0][0],c='#87CEEB',zorder=5)
                     ax2.set_xlabel(f'Lenght pipe [$m$]')
                     ax2.set_ylabel(f'Temperature [$ºC$]')
                     ax2.set_title(f'Fluid temperature across the pipe')
@@ -740,12 +728,6 @@ def page2():
                     fig3, ax3 = plt.subplots()
                     for i in range(len(HLS)):
                         ax3.plot(comp,HLS[i][0],label=f'Fluid holdup with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(HLS):
-                        #     ax3.scatter(comp[-1],HLS[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax3.scatter(comp[0],HLS[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax3.scatter(comp[-1],HLS[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax3.scatter(comp[0],HLS[0][0][0],c='#87CEEB',zorder=5)
                     ax3.set_xlabel(f'Lenght pipe [$m$]')
                     ax3.set_ylabel(f'Hl')
                     ax3.set_title(f'Fluid Holdup across the pipe')
@@ -757,12 +739,6 @@ def page2():
                     fig4, ax4 = plt.subplots()
                     for i in range(len(VSMS)):
                         ax4.plot(comp,VSMS[i][0],label=f'Fluid velocity with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(VSMS):
-                        #     ax4.scatter(comp[-1],VSMS[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax4.scatter(comp[0],VSMS[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax4.scatter(comp[-1],VSMS[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax4.scatter(comp[0],VSMS[0][0][0],c='#87CEEB',zorder=5)
                     ax4.set_xlabel(f'Lenght pipe [$m$]')
                     ax4.set_ylabel(f'Fluid velocity [$m/s$]')
                     ax4.set_title(f'Fluid velocity across the pipe')
@@ -775,12 +751,6 @@ def page2():
                     fig5, ax5 = plt.subplots()
                     for i in range(len(densities)):
                         ax5.plot(comp,densities[i][0],label=f'Fluid density with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(densities):
-                        #     ax5.scatter(comp[-1],densities[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax5.scatter(comp[0],densities[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax5.scatter(comp[-1],densities[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax5.scatter(comp[0],densities[0][0][0],c='#87CEEB',zorder=5)
                     ax5.set_xlabel(f'Lenght pipe [$m$]')
                     ax5.set_ylabel(f'Density [Kg/m³]')
                     ax5.set_title(f'Fluid density across the pipe')
@@ -792,12 +762,6 @@ def page2():
                     fig7, ax7 = plt.subplots()
                     for i in range(len(Zs)):
                         ax7.plot(comp,Zs[i][0],label=f'Factor Z of the fluid with {options[i]} model.',c=colors[i] ,zorder=3)
-                        # if i+1 == len(Zs):
-                        #     ax7.scatter(comp[-1],Zs[i][0][-1],c='#1D2D50',zorder=4,label='Separator')
-                        #     ax7.scatter(comp[0],Zs[0][0][0],c='#87CEEB',zorder=5,label='Reservoir')
-                        # else:                            
-                        #     ax7.scatter(comp[-1],Zs[i][0][-1],c='#1D2D50',zorder=4)
-                        #     ax7.scatter(comp[0],Zs[0][0][0],c='#87CEEB',zorder=5)
                     ax7.set_xlabel(f'Lenght of the pipe [$m$]')
                     ax7.set_ylabel(f'Z')
                     ax7.set_title(f'Factor Z across the pipe')
