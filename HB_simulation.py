@@ -55,9 +55,9 @@ def HB_simulation( fluid, line, temp,) -> tuple:
                 mass_flow = flow_liquid_mass*λl + flow_gas_mass*( 1 - λl)
                 cp_mix = ( ( liquid_cp* λl ) + cp_gas(fluid_simulation)*( 1 - λl) )*1000
                 if line.direction == "Downhill":
-                    angle_temp = line.angle*-1
+                    angle_temp = round(line.angle*-1,2)
                 else:
-                    angle_temp = line.angle               
+                    angle_temp = round(line.angle,2)              
                 term1_temp =  (mass_flow*9.81*np.sin(angle_temp) ) / (temp.TEC)
                 term2_temp = np.exp( ( (-temp.TEC) / (mass_flow*cp_mix)* (step) ))
                 term3_temp = ( (t_inf) - ( term1_temp) - (fluid_simulation.T) )

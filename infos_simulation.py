@@ -23,9 +23,9 @@ def fluid_pvt(fluid) -> tuple:
     water_rho = Water_density(fluid)*16.01846337396014 # Kg / m^3
     oil_rho = Oil_Density_standing(fluid)*16.01846337396014 # Kg / m^3
     gas_rho = Gas_density(fluid) # Kg / m^3
-    water_viscosity = Water_viscosity(fluid) / 1000 #Cp
-    oil_viscosity = Oil_Viscosity_standing(fluid) / 1000 #Cp
-    gas_viscosity = Gas_Viscosity(fluid) / 1000 #Cp
+    water_viscosity = Water_viscosity(fluid) / 1000  # Pa.s 
+    oil_viscosity = Oil_Viscosity_standing(fluid) / 1000 # Pa.s 
+    gas_viscosity = Gas_Viscosity(fluid) / 1000 # Pa.s 
     Z = z(fluid)
     sigma_o_g =  0.00841 # N/m
     sigma_w_g = 0.004 # N/m
