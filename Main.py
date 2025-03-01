@@ -482,7 +482,7 @@ def page2():
     for i in range(len(sections)):
         with colums[i]:
             st.header(keys_section[i])
-            DH[f'Hydraulic diameter (in) {i+1}']  = st.number_input(f'{keys_DH[i] }',2.5,10.0,step=0.01,format="%.3f")
+            DH[f'Hydraulic diameter (in) {i+1}']  = st.number_input(f'{keys_DH[i] }',1.5,10.0,step=0.01,format="%.3f")
             rug_abs[f'Absolute roughness (in) {i+1}'] = st.number_input(f'{keys_rug[i] }',0.0001,2.5,step=0.01,format="%.4f")
             length[f'Length of the pipe (m) {i+1}'] = st.number_input(f'{keys_len[i] }', step=1)
             angle[f'Angle (°) {i+1}'] = st.number_input(f'{keys_ang[i] }',0.0,90.0,step=0.01,format="%.3f")
