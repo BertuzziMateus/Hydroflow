@@ -100,7 +100,7 @@ def horizontal_liquid_holdup( Flow_info , tubing ) -> float:
     elif Flow_type == 'segregated':
         Hlo = segregated_liquid_holdup(Flow_info, tubing)
     elif Flow_type == 'transition':
-        Hlo = (segregated_liquid_holdup(Flow_info),intermittent_liquid_holdup(Flow_info))
+        Hlo = (segregated_liquid_holdup(Flow_info , tubing),intermittent_liquid_holdup(Flow_info , tubing))
     
     return Hlo
 

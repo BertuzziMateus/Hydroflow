@@ -11,23 +11,23 @@ import time
 start_time = time.time()
 
 fluid = Fluid_model(
-    P = 435, #bar  
-    T = 85,#C 
-    Dg = 0.72,
+    P = 102.41, #bar  
+    T = 76,#C 
+    Dg = 0.78,
     Do = 0,
-    API = 29,
-    RGL = 319,# sM^3/sM^3 
-    BSW = 0.2, # %
-    rate = 3400/86400 # m^3 /s
+    API = 15.6,
+    RGL = 66.63,# sM^3/sM^3 
+    BSW = 0.604, # %
+    rate = 17.10/86400 # m^3 /s
     ) 
 
-line1 = pipe(Dh = 4.9* 0.0254, e =  0.0001 * 0.0254, L = 2800, angle = 90 ,direction='Uphill' )
+line1 = pipe(Dh = 1.995* 0.0254, e =  0.0001 * 0.0254, L = 1025, angle = 90 ,direction='Uphill' )
 
 
 
 #Hagedorn = single_simulation(fluid,[line1],None,0,'Hagedorn')
 
-Beggs_brill = single_simulation(fluid,[line1],None,0,'Beggs_Brill')
+Beggs_brill = single_simulation(fluid,[line1],None,1,'Beggs_Brill')
 
 #print(Hagedorn[1])
 print('')
