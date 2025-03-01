@@ -427,7 +427,7 @@ def page2():
         API = 0 
     RGL = st.number_input('RGL (sm³/sm³)',1.0,500.0,step=0.1,format="%.3f")
     BSW = st.number_input('BSW',0.0,1.0,step=0.1,format="%.3f" )
-    rate = st.number_input('Required flow (m³/day)',50.0,10000.0,step=0.1,format="%.3f")
+    rate = st.number_input('Required flow (m³/day)',1.0,10000.0,step=0.1,format="%.3f")
 
 
     fluid = Fluid_model(
