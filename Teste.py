@@ -21,15 +21,15 @@ fluid = Fluid_model(
     rate = 17.10/86400 # m^3 /s
     ) 
 
-line1 = pipe(Dh = 1.995* 0.0254, e =  0.0001 * 0.0254, L = 1025, angle = 90 ,direction='Uphill' )
+line1 = pipe(Dh = 1.995* 0.0254, e =  0.00001 * 0.0254, L = 1025, angle = 90 ,direction='Uphill' )
 
 
 
-#Hagedorn = single_simulation(fluid,[line1],None,0,'Hagedorn')
+Hagedorn = single_simulation(fluid,[line1],None,0,'Hagedorn')
 
-Beggs_brill = single_simulation(fluid,[line1],None,1,'Beggs_Brill')
+Beggs_brill = single_simulation(fluid,[line1],None,0,'Beggs_Brill')
 
-#print(Hagedorn[1])
+print(Hagedorn[1])
 print('')
 print(Beggs_brill[1])
 

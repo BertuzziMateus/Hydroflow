@@ -193,7 +193,7 @@ def briggs_simulation( fluid, line, temp)  -> tuple:
         
         print(fluid_simulation.P,Hl,fluid_simulation.T,i)
         
-        if fluid_simulation.P < 15 :
+        if fluid_simulation.P < 10 :
             fluid_simulation.P = 0
             break
         

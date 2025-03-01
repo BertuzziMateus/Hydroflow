@@ -17,7 +17,7 @@ def single_pump_value_teste(fluid, lines, temps, line_pump, mode:str)-> float:
         if (mode in ['Bendisken', 'Bhagwat']): 
             fluid_simulation.P = 25
         else:
-            fluid_simulation.P = 15
+            fluid_simulation.P = 10
 
         for line in lines:
             if mode == 'Homogeneous':
@@ -60,7 +60,7 @@ def single_pump_value_teste(fluid, lines, temps, line_pump, mode:str)-> float:
         if (mode in ['Bendisken', 'Bhagwat']):
             fluid_pump.P = 25
         else:        
-            fluid_pump.P = 15
+            fluid_pump.P = 10
         lines_copy = lines_copy[::-1]
         for line in lines_copy:
             if mode == 'Homogeneous':
