@@ -417,7 +417,7 @@ def page2():
 
     st.divider()
 
-    P = st.number_input('Fluid pressure (bar)',0.00,1500,step=0.1,format="%.3f")
+    P = st.number_input('Fluid pressure (bar)',0.00,1500.0,step=0.1,format="%.3f")
     T = st.number_input('Fluid temperature (°C)',0.0,150.0,step=0.1,format="%.3f")
     Dg = st.number_input('Dg',0.0,1.0,step=0.1,format="%.3f")
     Do = st.number_input('Do',0.0,1.0,step=0.1,format="%.3f")
