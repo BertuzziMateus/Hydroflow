@@ -71,18 +71,18 @@ def bendisken_simulation( fluid, line, temp, ) -> tuple:
                 lose_pressure = presure_fluid - total_gradient_homogeneous(flow_info,line)*step
                 fluid_simulation.P = lose_pressure/100000
                 
-                vars[0].append(fluid_simulation.P)
-                vars[1].append(fluid_simulation.T)
-                vars[2].append(Hl)
-                vars[3].append(flow_info.vm)
-                vars[4].append(flow_info.vsg)
-                vars[5].append(flow_info.vsl)
-                vars[6].append(flow_info.mix_rho)
-                vars[7].append(flow_info.mix_viscosity)
-                vars[8].append(flow_info.z)
-                vars[9].append(gravitational_gradient_homo(flow_info,line))
-                vars[10].append(frictional_gradient_homo(flow_info,line))
-                vars[11].append(kinetic_dl_t(flow_info,line)*total_gradient_homogeneous(flow_info,line))
+                vars[0].append(round(fluid_simulation.P, 3))
+                vars[1].append(round(fluid_simulation.T, 3))
+                vars[2].append(round(Hl, 3))
+                vars[3].append(round(flow_info.vm, 3))
+                vars[4].append(round(flow_info.vsg, 3))
+                vars[5].append(round(flow_info.vsl, 3))
+                vars[6].append(round(flow_info.mix_rho, 3))
+                vars[7].append(round(flow_info.mix_viscosity, 3))
+                vars[8].append(round(flow_info.z, 3))
+                vars[9].append(round(gravitational_gradient_homo(flow_info, line), 3))
+                vars[10].append(round(frictional_gradient_homo(flow_info, line), 3))
+                vars[11].append(round(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line), 3))
                
 
 
@@ -109,18 +109,18 @@ def bendisken_simulation( fluid, line, temp, ) -> tuple:
                 presure_fluid = fluid_simulation.P*100000
                 lose_pressure = presure_fluid - (totaL_gradient_bendi(flow_info,line))*step 
                 fluid_simulation.P = lose_pressure/100000
-                vars[0].append(fluid_simulation.P)
-                vars[1].append(fluid_simulation.T)
-                vars[2].append(Hl)
-                vars[3].append(vm)
-                vars[4].append(vsg)
-                vars[5].append(vsl)
-                vars[6].append(mix_rho)
-                vars[7].append(mix_viscosity)
-                vars[8].append(flow_info.z)
-                vars[9].append(gravitational_gradient_Ben(flow_info,line))
-                vars[10].append(frictional_gradient_Ben(flow_info,line))
-                vars[11].append(kinetic_gradient_Ben(flow_info,line))
+                vars[0].append(round(fluid_simulation.P, 3))
+                vars[1].append(round(fluid_simulation.T, 3))
+                vars[2].append(round(Hl, 3))
+                vars[3].append(round(vm, 3))
+                vars[4].append(round(vsg, 3))
+                vars[5].append(round(vsl, 3))
+                vars[6].append(round(mix_rho, 3))
+                vars[7].append(round(mix_viscosity, 3))
+                vars[8].append(round(flow_info.z, 3))
+                vars[9].append(round(gravitational_gradient_Ben(flow_info, line), 3))
+                vars[10].append(round(frictional_gradient_Ben(flow_info, line), 3))
+                vars[11].append(round(kinetic_gradient_Ben(flow_info, line), 3))
 
 
 
@@ -166,19 +166,18 @@ def bendisken_simulation( fluid, line, temp, ) -> tuple:
                 lose_pressure = presure_fluid - total_gradient_homogeneous(flow_info,line)*step
                 fluid_simulation.P = lose_pressure/100000
                 
-                vars[0].append(fluid_simulation.P)
-                vars[1].append(fluid_simulation.T)
-                vars[2].append(Hl)
-                vars[3].append(flow_info.vm)
-                vars[4].append(flow_info.vsg)
-                vars[5].append(flow_info.vsl)
-                vars[6].append(flow_info.mix_rho)
-                vars[7].append(flow_info.mix_viscosity)
-                vars[8].append(flow_info.z)
-                vars[9].append(gravitational_gradient_homo(flow_info,line))
-                vars[10].append(frictional_gradient_homo(flow_info,line))
-                vars[11].append(kinetic_dl_t(flow_info,line)*total_gradient_homogeneous(flow_info,line))
-            
+                vars[0].append(round(fluid_simulation.P, 3))
+                vars[1].append(round(fluid_simulation.T, 3))
+                vars[2].append(round(Hl, 3))
+                vars[3].append(round(flow_info.vm, 3))
+                vars[4].append(round(flow_info.vsg, 3))
+                vars[5].append(round(flow_info.vsl, 3))
+                vars[6].append(round(flow_info.mix_rho, 3))
+                vars[7].append(round(flow_info.mix_viscosity, 3))
+                vars[8].append(round(flow_info.z, 3))
+                vars[9].append(round(gravitational_gradient_homo(flow_info, line), 3))
+                vars[10].append(round(frictional_gradient_homo(flow_info, line), 3))
+                vars[11].append(round(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line), 3))
 
 
             else:
@@ -189,24 +188,24 @@ def bendisken_simulation( fluid, line, temp, ) -> tuple:
                 presure_fluid = fluid_simulation.P*100000
                 lose_pressure = presure_fluid - (totaL_gradient_bendi(flow_info,line))*step 
                 fluid_simulation.P = lose_pressure/100000
-                vars[0].append(fluid_simulation.P)
-                vars[1].append(fluid_simulation.T)
-                vars[2].append(Hl)
-                vars[3].append(vm)
-                vars[4].append(vsg)
-                vars[5].append(vsl)
-                vars[6].append(mix_rho)
-                vars[7].append(mix_viscosity)
-                vars[8].append(flow_info.z)
-                vars[9].append(gravitational_gradient_Ben(flow_info,line))
-                vars[10].append(frictional_gradient_Ben(flow_info,line))
-                vars[11].append(kinetic_gradient_Ben(flow_info,line))
+                vars[0].append(round(fluid_simulation.P, 3))
+                vars[1].append(round(fluid_simulation.T, 3))
+                vars[2].append(round(Hl, 3))
+                vars[3].append(round(vm, 3))
+                vars[4].append(round(vsg, 3))
+                vars[5].append(round(vsl, 3))
+                vars[6].append(round(mix_rho, 3))
+                vars[7].append(round(mix_viscosity, 3))
+                vars[8].append(round(flow_info.z, 3))
+                vars[9].append(round(gravitational_gradient_Ben(flow_info, line), 3))
+                vars[10].append(round(frictional_gradient_Ben(flow_info, line), 3))
+                vars[11].append(round(kinetic_gradient_Ben(flow_info, line), 3))
 
             
 
 
 
-        print(fluid_simulation.P,Hl,fluid_simulation.T,i,'a')
+        print(round(fluid_simulation.P, 3), round(Hl, 3), round(fluid_simulation.T, 3), round(i, 3), 'a')
 
         if fluid_simulation.P < 25 :
             fluid_simulation.P = 0

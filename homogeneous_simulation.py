@@ -122,7 +122,7 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
             vars[10].append(round(frictional_gradient_homo(flow_info, line), 3))
             vars[11].append(round(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line), 3))
 
-        print(fluid_simulation.P,λl,fluid_simulation.T,i)
+        print(round(fluid_simulation.P, 3), round(λl, 3), round(fluid_simulation.T, 3), round(i, 3))
         
         if fluid_simulation.P < 10:
             fluid_simulation.P = 0

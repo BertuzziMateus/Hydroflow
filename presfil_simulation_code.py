@@ -168,17 +168,17 @@ def simulation(fluid, lines, temps,line_pump,inclined:str,vertical:str,horizonta
             elif vertical == 'Bhagwat':
                 temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # pressure 
-                vars[1].append(var[1][j]) # TEMP
-                vars[2].append(var[2][j]) # HL
-                vars[3].append(var[3][j]) # VM
-                vars[4].append(var[4][j]) # VSG
-                vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIty
-                vars[7].append(var[7][j]) # M_VISC
-                vars[8].append(var[8][j]) # Z
-                vars[9].append(var[9][j]) # grav
-                vars[10].append(var[10][j]) # fri
+                vars[0].append(round(var[0][j], 3)) # pressure 
+                vars[1].append(round(var[1][j], 3)) # TEMP
+                vars[2].append(round(var[2][j], 3)) # HL
+                vars[3].append(round(var[3][j], 3)) # VM
+                vars[4].append(round(var[4][j], 3)) # VSG
+                vars[5].append(round(var[5][j], 3)) # VSL
+                vars[6].append(round(var[6][j], 3)) # M_DENSIty
+                vars[7].append(round(var[7][j], 3)) # M_VISC
+                vars[8].append(round(var[8][j], 3)) # Z
+                vars[9].append(round(var[9][j], 3)) # grav
+                vars[10].append(round(var[10][j], 3)) # fri
         elif line.angle == 0:
             if horizontal == 'Beggs_Brill':
                 temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
@@ -189,17 +189,17 @@ def simulation(fluid, lines, temps,line_pump,inclined:str,vertical:str,horizonta
             elif horizontal == 'Bhagwat':
                 temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # pressure 
-                vars[1].append(var[1][j]) # TEMP
-                vars[2].append(var[2][j]) # HL
-                vars[3].append(var[3][j]) # VM
-                vars[4].append(var[4][j]) # VSG
-                vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSItyy
-                vars[7].append(var[7][j]) # M_VISC
-                vars[8].append(var[8][j]) # Z
-                vars[9].append(var[9][j]) # grav
-                vars[10].append(var[10][j]) # fri
+                vars[0].append(round(var[0][j], 3)) # pressure 
+                vars[1].append(round(var[1][j], 3)) # TEMP
+                vars[2].append(round(var[2][j], 3)) # HL
+                vars[3].append(round(var[3][j], 3)) # VM
+                vars[4].append(round(var[4][j], 3)) # VSG
+                vars[5].append(round(var[5][j], 3)) # VSL
+                vars[6].append(round(var[6][j], 3)) # M_DENSIty
+                vars[7].append(round(var[7][j], 3)) # M_VISC
+                vars[8].append(round(var[8][j], 3)) # Z
+                vars[9].append(round(var[9][j], 3)) # grav
+                vars[10].append(round(var[10][j], 3)) # fri
         else:
             if inclined == 'Beggs_Brill':
                 temperature,pressure,var = briggs_simulation(fluid_simulation,line,temp)
@@ -210,17 +210,17 @@ def simulation(fluid, lines, temps,line_pump,inclined:str,vertical:str,horizonta
             elif inclined == 'Bhagwat':
                 temperature,pressure,var = bhagwat_simulation(fluid_simulation,line,temp)
             for j in range(len(var[0])):
-                vars[0].append(var[0][j]) # pressure 
-                vars[1].append(var[1][j]) # TEMP
-                vars[2].append(var[2][j]) # HL
-                vars[3].append(var[3][j]) # VM
-                vars[4].append(var[4][j]) # VSG
-                vars[5].append(var[5][j]) # VSL
-                vars[6].append(var[6][j]) # M_DENSIty
-                vars[7].append(var[7][j]) # M_VISC
-                vars[8].append(var[8][j]) # Z
-                vars[9].append(var[9][j]) # grav
-                vars[10].append(var[10][j]) # fri
+                vars[0].append(round(var[0][j], 3)) # pressure 
+                vars[1].append(round(var[1][j], 3)) # TEMP
+                vars[2].append(round(var[2][j], 3)) # HL
+                vars[3].append(round(var[3][j], 3)) # VM
+                vars[4].append(round(var[4][j], 3)) # VSG
+                vars[5].append(round(var[5][j], 3)) # VSL
+                vars[6].append(round(var[6][j], 3)) # M_DENSIty
+                vars[7].append(round(var[7][j], 3)) # M_VISC
+                vars[8].append(round(var[8][j], 3)) # Z
+                vars[9].append(round(var[9][j], 3)) # grav
+                vars[10].append(round(var[10][j], 3)) # fri
 
 
 
