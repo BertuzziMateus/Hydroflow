@@ -59,7 +59,7 @@ def HL_HB( Flow_info, tubing ) -> float:
     
     x_test = (
         ((liquid_velocity_number(Flow_info))/(gas_velocity_number(Flow_info))**0.575)*
-         (((Flow_info.pressure*0.0001450377)/(14.7))**0.10)*
+         (((Flow_info.pressure*14.503773773020924)/(14.7))**0.10)*
          ((nlc(Flow_info))/(diameter_tubing_number(Flow_info,tubing)))
         )
    

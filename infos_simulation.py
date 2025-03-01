@@ -50,7 +50,7 @@ def flow_infos(fluid, line ) -> tuple:
         Z = z_fluid,
         sigma_og = sigma_o_g, 
         sigma_wg = sigma_w_g,
-        pressure = fluid.P*100000, # Pascal
+        pressure = 0, 
         temperature = fluid.T + 273.15, # Kelvin
         RGL = fluid.RGL,
         BSW = fluid.BSW,
