@@ -114,7 +114,7 @@ def liquid_Holdup( Flow_info , tubing ) -> float :
 
     if tubing.direction == 'Uphill':
 
-        angle = tubing.angle
+        angle = round(tubing.angle,2)
 
         if flow == 'transition':
 
@@ -150,10 +150,10 @@ def liquid_Holdup( Flow_info , tubing ) -> float :
 
                 # intermitent
 
-                d =  0.011
-                e = -3.768
-                f = 3.539
-                g = -1.614
+                d =  2.96
+                e = 0.3050
+                f = -0.4473
+                g = 0.0978
 
                 C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
 
