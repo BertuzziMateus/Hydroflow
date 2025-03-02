@@ -7,19 +7,18 @@ from PVT_phases.Water_phase import *
 
 x = []
 y = []
-P = 230
+P = 350
 while P >= 1 :
     fluid = Fluid_model(
-            P = P , #bar  
-            T = 80, #C 
-            Dg = 0.844,
-            Do = 0.835,
-            API = 0,
-            RGL=  157, # sM^3/sM^3 
-            BSW = 0.2, # %
-            rate = 0 
-            )
-
+        P = P, #bar  
+        T = 86,#C 
+        Dg = 0.71,
+        Do = 0,
+        API = 19.20,
+        RGL = 90.7993,# sM^3/sM^3 
+        BSW = 0, # %
+        rate = 1092.04/86400 # m^3 /s
+        ) 
     pvt = PVT(
             Bw = Bw(fluid), #  bbl/STb
             Bo = Bo_standing(fluid), # bbl/STb
@@ -44,7 +43,7 @@ while P >= 1 :
 
 
     x.append(P)
-    y.append(pvt.oil_rho)
+    y.append(pvt.Bo)
     if P == 1:
         print(Pb_standing(fluid))
         print(pvt.oil_rho)

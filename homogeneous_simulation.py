@@ -61,18 +61,18 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
             lose_pressure = presure_fluid - total_gradient_homogeneous(flow_info,line)*step
             fluid_simulation.P = lose_pressure/100000
                 
-            vars[0].append(round(fluid_simulation.P, 3))
-            vars[1].append(round(fluid_simulation.T, 3))
-            vars[2].append(round(flow_info.λl, 3))
-            vars[3].append(round(flow_info.vm, 3))
-            vars[4].append(round(flow_info.vsg, 3))
-            vars[5].append(round(flow_info.vsl, 3))
-            vars[6].append(round(flow_info.mix_rho, 3))
-            vars[7].append(round(flow_info.mix_viscosity, 3))
-            vars[8].append(round(flow_info.z, 3))
-            vars[9].append(round(gravitational_gradient_homo(flow_info, line), 3))
-            vars[10].append(round(frictional_gradient_homo(flow_info, line), 3))
-            vars[11].append(round(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line), 3))
+            vars[0].append(fluid_simulation.P)
+            vars[1].append(fluid_simulation.T)
+            vars[2].append(flow_info.λl)
+            vars[3].append(flow_info.vm)
+            vars[4].append(flow_info.vsg)
+            vars[5].append(flow_info.vsl)
+            vars[6].append(flow_info.mix_rho)
+            vars[7].append(flow_info.mix_viscosity)
+            vars[8].append(flow_info.z)
+            vars[9].append(gravitational_gradient_homo(flow_info, line))
+            vars[10].append(frictional_gradient_homo(flow_info, line))
+            vars[11].append(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line))
 
         elif temp == None:
             
@@ -109,18 +109,18 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
             lose_pressure = presure_fluid - total_gradient_homogeneous(flow_info,line)*step
             fluid_simulation.P = lose_pressure/100000
                 
-            vars[0].append(round(fluid_simulation.P, 3))
-            vars[1].append(round(fluid_simulation.T, 3))
-            vars[2].append(round(flow_info.λl, 3))
-            vars[3].append(round(flow_info.vm, 3))
-            vars[4].append(round(flow_info.vsg, 3))
-            vars[5].append(round(flow_info.vsl, 3))
-            vars[6].append(round(flow_info.mix_rho, 3))
-            vars[7].append(round(flow_info.mix_viscosity, 3))
-            vars[8].append(round(flow_info.z, 3))
-            vars[9].append(round(gravitational_gradient_homo(flow_info, line), 3))
-            vars[10].append(round(frictional_gradient_homo(flow_info, line), 3))
-            vars[11].append(round(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line), 3))
+            vars[0].append(fluid_simulation.P)
+            vars[1].append(fluid_simulation.T)
+            vars[2].append(flow_info.λl)
+            vars[3].append(flow_info.vm)
+            vars[4].append(flow_info.vsg)
+            vars[5].append(flow_info.vsl)
+            vars[6].append(flow_info.mix_rho)
+            vars[7].append(flow_info.mix_viscosity)
+            vars[8].append(flow_info.z)
+            vars[9].append(gravitational_gradient_homo(flow_info, line))
+            vars[10].append(frictional_gradient_homo(flow_info, line))
+            vars[11].append(kinetic_dl_t(flow_info, line) * total_gradient_homogeneous(flow_info, line))
 
         print(round(fluid_simulation.P, 3), round(λl, 3), round(fluid_simulation.T, 3), round(i, 3))
         
@@ -179,10 +179,6 @@ def homogeneous_simulation_pump( fluid, line, temp) -> tuple:
         lose_pressure = presure_fluid + total_gradient_homogeneous(flow_info,line)*step
         fluid_simulation.P = lose_pressure/100000
             
-
-        print(fluid_simulation.P,λl,fluid_simulation.T,i)
-        
-
         i+= step
 
     return (fluid_simulation.P,fluid_simulation.T)

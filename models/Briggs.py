@@ -108,146 +108,92 @@ def liquid_velocity_number( Flow_info ) -> float:
     nvl = (Flow_info.vsl) * ( ((Flow_info.liquid_rho) / ( 9.81 * Flow_info.gas_liquid_sigma ))**(1/4) ) 
     return nvl
 
-def liquid_Holdup( Flow_info , tubing ) -> float :
+import numpy as np
 
-    flow = flow_type(Flow_info,tubing)
+def liquid_Holdup(Flow_info, tubing) -> float:
+    flow = flow_type(Flow_info, tubing)
+    Hl = 0.0
 
     if tubing.direction == 'Uphill':
+        angle_rad = tubing.angle
+    elif tubing.direction == 'Downhill':
+        angle_rad = -tubing.angle
 
-        angle = round(tubing.angle,2)
+    angle_deg = np.degrees(angle_rad)
+    apply_payne = (abs(angle_deg) <= 5.0)
+    angle_deg_conv = np.degrees(angle_rad)
+    angle_beggs = 1.8 * angle_deg_conv
+    angle_for_sin = np.radians(angle_beggs)
 
+    if tubing.direction == 'Uphill':
         if flow == 'transition':
-
-            if angle == 0:
-
-                L1,L2,L3,L4 = flow_parameters(Flow_info) 
-                A = ( L3 - Froude(Flow_info, tubing)) / (L3 - L2)
-                Hls = horizontal_liquid_holdup(Flow_info , tubing)[0]
-                Hli = horizontal_liquid_holdup(Flow_info , tubing)[1]
-                Hl = A*Hls + (1-A)*Hli
-                Hl = 0.924*Hl #Payne corretion
-
+            if abs(angle_rad) < 1e-5:
+                L1, L2, L3, L4 = flow_parameters(Flow_info)
+                A = (L3 - Froude(Flow_info, tubing)) / (L3 - L2)
+                Hls = horizontal_liquid_holdup(Flow_info, tubing)[0]
+                Hli = horizontal_liquid_holdup(Flow_info, tubing)[1]
+                Hl = A * Hls + (1 - A) * Hli
+                if apply_payne: Hl *= 0.924
             else:
-                
-                L1,L2,L3,L4 = flow_parameters(Flow_info) 
-                A = ( L3 - Froude(Flow_info, tubing)) / (L3 - L2)
+                L1, L2, L3, L4 = flow_parameters(Flow_info)
+                A = (L3 - Froude(Flow_info, tubing)) / (L3 - L2)
+                d_seg, e_seg, f_seg, g_seg = 0.011, -3.768, 3.539, -1.614
+                C_seg = (1 - Flow_info.λl) * np.log(d_seg * (Flow_info.λl**e_seg) * (liquid_velocity_number(Flow_info)**f_seg) * (Froude(Flow_info, tubing)**g_seg))
+                C_seg = max(C_seg, 0)
+                correction_seg = 1 + C_seg * (np.sin(angle_for_sin) - 0.333 * (np.sin(angle_for_sin)**3))
+                Hls = horizontal_liquid_holdup(Flow_info, tubing)[0] * correction_seg
+                d_int, e_int, f_int, g_int = 2.96, 0.305, -0.4473, 0.0978
+                C_int = (1 - Flow_info.λl) * np.log(d_int * (Flow_info.λl**e_int) * (liquid_velocity_number(Flow_info)**f_int) * (Froude(Flow_info, tubing)**g_int))
+                C_int = max(C_int, 0)
+                correction_int = 1 + C_int * (np.sin(angle_for_sin) - 0.333 * (np.sin(angle_for_sin)**3))
+                Hli = horizontal_liquid_holdup(Flow_info, tubing)[1] * correction_int
+                Hl = A * Hls + (1 - A) * Hli
+                if apply_payne: Hl *= 0.924
 
-                #segregado 
-
-                d =  0.011
-                e = -3.768
-                f = 3.539
-                g = -1.614
-
-                C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
-                if C < 0 :
-                    C = 0
-                correction = 1 + (C*(np.sin(angle*1.8) - 0.333*(np.sin(1.8*angle))**3))
-
-                Hls = horizontal_liquid_holdup(Flow_info , tubing)[0]*correction
-            
-
-
-                # intermitent
-
-                d =  2.96
-                e = 0.3050
-                f = -0.4473
-                g = 0.0978
-
-                C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
-
-                if C < 0 :
-                    C = 0
-
-                correction = 1 + (C*(np.sin(angle*1.8) - 0.333*(np.sin(1.8*angle))**3))
-
-                Hli = horizontal_liquid_holdup(Flow_info , tubing)[1]*correction
-
-                Hl = A*Hls + (1-A)*Hli
-
-                Hl = 0.924*Hl #Payne corretion
-        
-        if flow == 'segregated':
-
-            if angle == 0 : 
-                Hl = horizontal_liquid_holdup(Flow_info , tubing)
+        elif flow == 'segregated':
+            if abs(angle_rad) < 1e-5:
+                Hl = horizontal_liquid_holdup(Flow_info, tubing)
+                if apply_payne: Hl *= 0.924
             else:
-                d =  0.011
-                e = -3.768
-                f = 3.539
-                g = -1.614
+                d_seg, e_seg, f_seg, g_seg = 0.011, -3.768, 3.539, -1.614
+                C_seg = (1 - Flow_info.λl) * np.log(d_seg * (Flow_info.λl**e_seg) * (liquid_velocity_number(Flow_info)**f_seg) * (Froude(Flow_info, tubing)**g_seg))
+                C_seg = max(C_seg, 0)
+                correction_seg = 1 + C_seg * (np.sin(angle_for_sin) - 0.333 * (np.sin(angle_for_sin)**3))
+                Hl = horizontal_liquid_holdup(Flow_info, tubing) * correction_seg
+                if apply_payne: Hl *= 0.924
 
-                C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
-
-                if C < 0 :
-                    C = 0
-
-                correction = 1 + (C*(np.sin(angle*1.8) - 0.333*(np.sin(1.8*angle))**3))
-
-                Hl = horizontal_liquid_holdup(Flow_info , tubing)*correction
-
-                Hl = 0.924*Hl #Payne corretion
-     
-        if flow == 'intermittent':
-
-            if angle == 0:
-                Hl = horizontal_liquid_holdup(Flow_info , tubing)
+        elif flow == 'intermittent':
+            if abs(angle_rad) < 1e-5:
+                Hl = horizontal_liquid_holdup(Flow_info, tubing)
+                if apply_payne: Hl *= 0.924
             else:
-                d = 2.960
-                e = 0.305
-                f = -0.4473
-                g = 0.0978
+                d_int, e_int, f_int, g_int = 2.96, 0.305, -0.4473, 0.0978
+                C_int = (1 - Flow_info.λl) * np.log(d_int * (Flow_info.λl**e_int) * (liquid_velocity_number(Flow_info)**f_int) * (Froude(Flow_info, tubing)**g_int))
+                C_int = max(C_int, 0)
+                correction_int = 1 + C_int * (np.sin(angle_for_sin) - 0.333 * (np.sin(angle_for_sin)**3))
+                Hl = horizontal_liquid_holdup(Flow_info, tubing) * correction_int
+                if apply_payne: Hl *= 0.924
 
-                C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
-                
-                if C < 0 :
-                    C = 0
-
-                correction = 1 + (C*(np.sin(angle*1.8) - 0.333*(np.sin(1.8*angle))**3))
-
-                Hl = horizontal_liquid_holdup(Flow_info , tubing)*correction
-                Hl = 0.924*Hl #Payne corretion
-
-        if flow == 'distributed':
-
-            Hl = horizontal_liquid_holdup(Flow_info , tubing)
-            Hl = 0.924*Hl #Payne corretion
+        elif flow == 'distributed':
+            Hl = horizontal_liquid_holdup(Flow_info, tubing)
 
     elif tubing.direction == 'Downhill':
-        
-        angle= tubing.angle*-1
-
-        d = 4.7
-        e = -0.3692
-        f = 0.1244
-        g = -0.5056
-        C = ( 1 - Flow_info.λl )*np.log( d * ( Flow_info.λl**e ) * (liquid_velocity_number(Flow_info)**f) * (Froude (Flow_info, tubing)**g) )
-        
-        if C < 0 :
-            C = 0
-
-        correction = 1 + (C*(np.sin(angle*1.8) - 0.333*(np.sin(1.8*angle))**3))
-
-
+        d, e, f, g = 4.7, -0.3692, 0.1244, -0.5056
+        C = (1 - Flow_info.λl) * np.log(d * (Flow_info.λl**e) * (liquid_velocity_number(Flow_info)**f) * (Froude(Flow_info, tubing)**g))
+        C = max(C, 0)
+        correction = 1 + C * ( (np.sin(angle_for_sin) - 0.333 * (np.sin(angle_for_sin)**3)) )
         if flow == 'transition':
-            L1,L2,L3,L4 = flow_parameters(Flow_info) 
-            A = ( L3 - Froude(Flow_info, tubing)) / (L3 - L2)
-            Hls = horizontal_liquid_holdup(Flow_info , tubing)[0]*correction
-            Hli = horizontal_liquid_holdup(Flow_info , tubing)[1]*correction
-            Hl = A*Hls + (1-A)*Hli
-            Hl = 0.685*Hl #Payne corretion
+            L1, L2, L3, L4 = flow_parameters(Flow_info)
+            A = (L3 - Froude(Flow_info, tubing)) / (L3 - L2)
+            Hls = horizontal_liquid_holdup(Flow_info, tubing)[0] * correction
+            Hli = horizontal_liquid_holdup(Flow_info, tubing)[1] * correction
+            Hl = A * Hls + (1 - A) * Hli
         else:
-            Hl = horizontal_liquid_holdup(Flow_info , tubing)*correction
-            Hl = 0.685*Hl #Payne corretion
+            Hl = horizontal_liquid_holdup(Flow_info, tubing) * correction
+        if apply_payne: Hl *= 0.685
 
-    if Hl > 1: 
-        Hl = 1
-    elif Hl < 0:
-        Hl = 0
+    Hl = np.clip(Hl, 0.0, 1.0)
     return Hl
-
-
 
 def reynolds_no_slip(Flow_info, tubing) -> float:
     return  ( (Flow_info.mix_rho*Flow_info.vm*tubing.Dh) / (Flow_info.mix_viscosity) )
