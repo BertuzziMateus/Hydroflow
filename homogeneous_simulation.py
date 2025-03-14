@@ -4,7 +4,7 @@ from infos_simulation import *
 def homogeneous_simulation( fluid, line, temp) -> tuple:
 
     step = 1
-    i = 0
+    i = 1
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
     fluid_simulation = copy(fluid)
 
