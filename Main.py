@@ -700,16 +700,11 @@ def page2():
                     5:'c',
                 }
 
-                st.write(len(comp),len(pressures[0][0]))
-                st.write(len(comp),len(pressures[1][0]))
-                st.write(len(comp),len(pressures[2][0]))
-                st.write(len(comp),len(pressures[3][0]))
-                st.write(len(pressures))
 
 
                 fig1, ax1 = plt.subplots()
                 for i in range(len(pressures)):
-                    ax1.plot(comp,pressures[i+1][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
+                    ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
                 ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
                 ax1.set_xlabel(f'Lenght pipe [$m$]')
                 ax1.set_ylabel(f'Pressure [$bar$]')
@@ -720,93 +715,93 @@ def page2():
                 tab1.pyplot(fig1)
 
 
-                # fig2, ax2 = plt.subplots()
-                # for i in range(len(temperatures)):
-                #     ax2.plot(comp,temperatures[i][0],label=f'Temperature with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax2.set_xlabel(f'Lenght pipe [$m$]')
-                # ax2.set_ylabel(f'Temperature [$ºC$]')
-                # ax2.set_title(f'Fluid temperature across the pipe')
-                # ax2.grid(alpha=0.5,zorder=1)
-                # ax2.margins(x=0.1, y=0.1)
-                # ax2.legend()
-                # tab2.pyplot(fig2)
+                fig2, ax2 = plt.subplots()
+                for i in range(len(temperatures)):
+                    ax2.plot(comp,temperatures[i][0],label=f'Temperature with {options[i]} model.',c=colors[i] ,zorder=3)
+                ax2.set_xlabel(f'Lenght pipe [$m$]')
+                ax2.set_ylabel(f'Temperature [$ºC$]')
+                ax2.set_title(f'Fluid temperature across the pipe')
+                ax2.grid(alpha=0.5,zorder=1)
+                ax2.margins(x=0.1, y=0.1)
+                ax2.legend()
+                tab2.pyplot(fig2)
 
-                # fig3, ax3 = plt.subplots()
-                # for i in range(len(HLS)):
-                #     ax3.plot(comp,HLS[i][0],label=f'Fluid holdup with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax3.set_xlabel(f'Lenght pipe [$m$]')
-                # ax3.set_ylabel(f'Hl')
-                # ax3.set_title(f'Fluid Holdup across the pipe')
-                # ax3.grid(alpha=0.5,zorder=1)
-                # ax3.margins(x=0.1, y=0.1)
-                # ax3.legend()
-                # tab3.pyplot(fig3)
+                fig3, ax3 = plt.subplots()
+                for i in range(len(HLS)):
+                    ax3.plot(comp,HLS[i][0],label=f'Fluid holdup with {options[i]} model.',c=colors[i] ,zorder=3)
+                ax3.set_xlabel(f'Lenght pipe [$m$]')
+                ax3.set_ylabel(f'Hl')
+                ax3.set_title(f'Fluid Holdup across the pipe')
+                ax3.grid(alpha=0.5,zorder=1)
+                ax3.margins(x=0.1, y=0.1)
+                ax3.legend()
+                tab3.pyplot(fig3)
 
-                # fig4, ax4 = plt.subplots()
-                # for i in range(len(VSMS)):
-                #     ax4.plot(comp,VSMS[i][0],label=f'Fluid velocity with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax4.set_xlabel(f'Lenght pipe [$m$]')
-                # ax4.set_ylabel(f'Fluid velocity [$m/s$]')
-                # ax4.set_title(f'Fluid velocity across the pipe')
-                # ax4.grid(alpha=0.5,zorder=1)
-                # ax4.margins(x=0.1, y=0.1)
-                # ax4.legend()
-                # tab4.pyplot(fig4)
+                fig4, ax4 = plt.subplots()
+                for i in range(len(VSMS)):
+                    ax4.plot(comp,VSMS[i][0],label=f'Fluid velocity with {options[i]} model.',c=colors[i] ,zorder=3)
+                ax4.set_xlabel(f'Lenght pipe [$m$]')
+                ax4.set_ylabel(f'Fluid velocity [$m/s$]')
+                ax4.set_title(f'Fluid velocity across the pipe')
+                ax4.grid(alpha=0.5,zorder=1)
+                ax4.margins(x=0.1, y=0.1)
+                ax4.legend()
+                tab4.pyplot(fig4)
 
                 
-                # fig5, ax5 = plt.subplots()
-                # for i in range(len(densities)):
-                #     ax5.plot(comp,densities[i][0],label=f'Fluid density with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax5.set_xlabel(f'Lenght pipe [$m$]')
-                # ax5.set_ylabel(f'Density [Kg/m³]')
-                # ax5.set_title(f'Fluid density across the pipe')
-                # ax5.grid(alpha=0.5,zorder=1)
-                # ax5.margins(x=0.1, y=0.1)
-                # ax5.legend()
-                # tab5.pyplot(fig5)
+                fig5, ax5 = plt.subplots()
+                for i in range(len(densities)):
+                    ax5.plot(comp,densities[i][0],label=f'Fluid density with {options[i]} model.',c=colors[i] ,zorder=3)
+                ax5.set_xlabel(f'Lenght pipe [$m$]')
+                ax5.set_ylabel(f'Density [Kg/m³]')
+                ax5.set_title(f'Fluid density across the pipe')
+                ax5.grid(alpha=0.5,zorder=1)
+                ax5.margins(x=0.1, y=0.1)
+                ax5.legend()
+                tab5.pyplot(fig5)
 
-                # fig7, ax7 = plt.subplots()
-                # for i in range(len(Zs)):
-                #     ax7.plot(comp,Zs[i][0],label=f'Factor Z of the fluid with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax7.set_xlabel(f'Lenght of the pipe [$m$]')
-                # ax7.set_ylabel(f'Z')
-                # ax7.set_title(f'Factor Z across the pipe')
-                # ax7.grid(alpha=0.5,zorder=1)
-                # ax7.margins(x=0.1, y=0.1)
-                # ax7.legend()
-                # tab7.pyplot(fig7) 
+                fig7, ax7 = plt.subplots()
+                for i in range(len(Zs)):
+                    ax7.plot(comp,Zs[i][0],label=f'Factor Z of the fluid with {options[i]} model.',c=colors[i] ,zorder=3)
+                ax7.set_xlabel(f'Lenght of the pipe [$m$]')
+                ax7.set_ylabel(f'Z')
+                ax7.set_title(f'Factor Z across the pipe')
+                ax7.grid(alpha=0.5,zorder=1)
+                ax7.margins(x=0.1, y=0.1)
+                ax7.legend()
+                tab7.pyplot(fig7) 
 
-                # st.divider()
+                st.divider()
 
-                # results_1= []
-                # for i in range(len(options)):
-                #     results_1.append([lastest_pressures[i],lastest_tempertarutes[i],pumps[i]]) 
+                results_1= []
+                for i in range(len(options)):
+                    results_1.append([lastest_pressures[i],lastest_tempertarutes[i],pumps[i]]) 
                 
-                # index1 = []
-                # colum1 = ["Pressure at separator (bar)", "Temperature at separator (ºC)","Pump increment (bar)"]
-                # for index in options:
-                #     index1.append(index)   
+                index1 = []
+                colum1 = ["Pressure at separator (bar)", "Temperature at separator (ºC)","Pump increment (bar)"]
+                for index in options:
+                    index1.append(index)   
 
-                # df_results_1 = pd.DataFrame(results_1,index=index1,columns=colum1)
-
-
-                # results_2 = []
-                # for i in range(len(options)):
-                #     grav_med = (sum(grav[i][0])/len(grav[i][0]))/100000
-                #     fric_med = (sum(fric[i][0])/len(fric[i][0]))/100000
-                #     total_med = grav_med+fric_med
-                #     results_2.append([grav_med,fric_med,total_med])
-                # colum2 = ["Gravitational lose (bar/m)","Friccional lose (bar/m)","Total lose (bar/m)"]
-
-                # df_results_2 = pd.DataFrame(results_2,index=index1,columns=colum2)
-
-                # st.subheader('Tables with the main results')
-
-                # st.dataframe(df_results_1.style.format("{:.3f}"))
-                # st.dataframe(df_results_2.style.format("{:.3f}"))
+                df_results_1 = pd.DataFrame(results_1,index=index1,columns=colum1)
 
 
-                # st.divider()
+                results_2 = []
+                for i in range(len(options)):
+                    grav_med = (sum(grav[i][0])/len(grav[i][0]))/100000
+                    fric_med = (sum(fric[i][0])/len(fric[i][0]))/100000
+                    total_med = grav_med+fric_med
+                    results_2.append([grav_med,fric_med,total_med])
+                colum2 = ["Gravitational lose (bar/m)","Friccional lose (bar/m)","Total lose (bar/m)"]
+
+                df_results_2 = pd.DataFrame(results_2,index=index1,columns=colum2)
+
+                st.subheader('Tables with the main results')
+
+                st.dataframe(df_results_1.style.format("{:.3f}"))
+                st.dataframe(df_results_2.style.format("{:.3f}"))
+
+
+                st.divider()
 
                 # except:
                 #     st.error("Erro ao simular")
