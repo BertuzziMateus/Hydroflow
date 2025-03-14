@@ -114,7 +114,7 @@ def HL_HB( Flow_info, tubing ) -> float:
     if hl > Flow_info.λl:
         hl = hl
     else:
-        hl = Flow_info.λl
+        hl = hl
 
     return max(0.0, min(1.0, hl)) 
 

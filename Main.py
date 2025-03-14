@@ -638,17 +638,19 @@ def page2():
         
         with st.container():
             with st.spinner('Simulating...'):
-                # try:
-                lastest_pressures = []
-                lastest_tempertarutes = []
-                pumps = []
-                for i in range(len(options)):
-                    T,P,var,pump = single_simulation(fluid,lines,temps,pump_line,options[i])
-                    variables[i].append([T,P,var,pump])
-                    lastest_pressures.append(P)
-                    lastest_tempertarutes.append(T)
-                    pumps.append(pump)
-                    st.success(f'The {options[i]} model finished the simulation without errors')
+                try:
+                    lastest_pressures = []
+                    lastest_tempertarutes = []
+                    pumps = []
+                    for i in range(len(options)):
+                        T,P,var,pump = single_simulation(fluid,lines,temps,pump_line,options[i])
+                        variables[i].append([T,P,var,pump])
+                        lastest_pressures.append(P)
+                        lastest_tempertarutes.append(T)
+                        pumps.append(pump)
+                        st.success(f'The {options[i]} model finished the simulation without errors')
+                except:
+                    st.error(f'The {options[i]} model encountered an error during the simulation')
 
 
                 comp = np.arange(0,len(variables[0][0][2][0]),1)
@@ -803,8 +805,6 @@ def page2():
 
                 st.divider()
 
-                # except:
-                #     st.error("Erro ao simular")
     
     pass
 
