@@ -665,27 +665,27 @@ def page2():
                         fric[i].append(variables[i][0][2][10])
                         ace[i].append(variables[i][0][2][11])
                         
-                    # bubble_points = []
-                    # for i in range(len(variables[0][0][2][1])):
-                    #     copy_fluid.T = temperatures[0][0][i]
-                    #     bubble_points.append(Pb_standing(copy_fluid)*0.0689475729)
+                    bubble_points = []
+                    for i in range(len(variables[0][0][2][1])):
+                        copy_fluid.T = temperatures[0][0][i]
+                        bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
 
-                    # custom_style = {
-                    #     'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                    #     'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
-                    #     'axes.titlesize': 14,  # Tamanho do título do gráfico
-                    #     'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                    #     'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                    #     'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
-                    #     'lines.linewidth': 2,  # Espessura das linhas dos gráficos
-                    #     'lines.markersize': 6,  # Tamanho dos marcadores
-                    #     'legend.fontsize': 9,  # Tamanho da legenda
-                    #     'legend.frameon': False,  # Remove a moldura ao redor da legenda
-                    #     'legend.loc': 'best',  # Melhor posição automática para a legenda
-                    #     'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
-                    #     'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
-                    #     'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
-                    #     }
+                    custom_style = {
+                        'font.size': 12,  # Tamanho adequado para leitura de gráficos
+                        'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
+                        'axes.titlesize': 14,  # Tamanho do título do gráfico
+                        'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
+                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
+                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                        'lines.linewidth': 2,  # Espessura das linhas dos gráficos
+                        'lines.markersize': 6,  # Tamanho dos marcadores
+                        'legend.fontsize': 9,  # Tamanho da legenda
+                        'legend.frameon': False,  # Remove a moldura ao redor da legenda
+                        'legend.loc': 'best',  # Melhor posição automática para a legenda
+                        'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
+                        'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
+                        'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
+                        }
                 
                 
                     # plt.rcParams.update(custom_style)
