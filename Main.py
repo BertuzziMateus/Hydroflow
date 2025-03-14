@@ -701,11 +701,11 @@ def page2():
                     }
 
                     st.write(comp,pressures[0][0])
+                    st.write(len(pressures))
 
-                    # fig1, ax1 = plt.subplots()
-                    # for i in range(len(pressures)):
-                    #     st.write((len(comp,pressures[i][0])))
-                    #     ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
+                    fig1, ax1 = plt.subplots()
+                    for i in range(len(pressures)):
+                        ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
                     # ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
                     # ax1.set_xlabel(f'Lenght pipe [$m$]')
                     # ax1.set_ylabel(f'Pressure [$bar$]')
