@@ -704,7 +704,6 @@ def page2():
 
                 fig1, ax1 = plt.subplots()
                 for i in range(len(pressures)):
-                    st.write(len(comp),len(pressures[i][0]))
                     ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
                 ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
                 ax1.set_xlabel(f'Lenght pipe [$m$]')
@@ -1018,146 +1017,146 @@ def page3():
                 try:
                     T,P,var,pump = simulation(fluid,lines,temps,pump_line,inclined,vertical,horizontal)
                     variables.append(var)
-                    # comp = np.arange(0,len(variables[0][0]),1)
+                    comp = np.arange(0,len(variables[0][0]),1)
 
-                    # for i in range(len(variables[0][0])):
-                    #     pressures.append(variables[0][0][i])
-                    #     temperatures.append(variables[0][1][i])
-                    #     HLS.append(variables[0][2][i])
-                    #     VSMS.append(variables[0][3][i])
-                    #     densities.append(variables[0][6][i])
-                    #     viscosities.append(variables[0][7][i])
-                    #     Zs.append(variables[0][8][i])
-                    #     grav.append(variables[0][9][i])
-                    #     fric.append(variables[0][10][i])
-                    #     #ace.append(variables[0][11][i])
+                    for i in range(len(variables[0][0])):
+                        pressures.append(variables[0][0][i])
+                        temperatures.append(variables[0][1][i])
+                        HLS.append(variables[0][2][i])
+                        VSMS.append(variables[0][3][i])
+                        densities.append(variables[0][6][i])
+                        viscosities.append(variables[0][7][i])
+                        Zs.append(variables[0][8][i])
+                        grav.append(variables[0][9][i])
+                        fric.append(variables[0][10][i])
+                        #ace.append(variables[0][11][i])
 
-                    # bubble_points = []
-                    # for i in range(len(variables[0][0])):
-                    #     copy_fluid.T = temperatures[i]
-                    #     bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
+                    bubble_points = []
+                    for i in range(len(variables[0][0])):
+                        copy_fluid.T = temperatures[i]
+                        bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
 
-                    # custom_style = {
-                    #     'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                    #     'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
-                    #     'axes.titlesize': 14,  # Tamanho do título do gráfico
-                    #     'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                    #     'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                    #     'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
-                    #     'lines.linewidth': 2,  # Espessura das linhas dos gráficos
-                    #     'lines.markersize': 6,  # Tamanho dos marcadores
-                    #     'legend.fontsize': 10,  # Tamanho da legenda
-                    #     'legend.frameon': False,  # Remove a moldura ao redor da legenda
-                    #     'legend.loc': 'best',  # Melhor posição automática para a legenda
-                    #     'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
-                    #     'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
-                    #     'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
-                    #     }
+                    custom_style = {
+                        'font.size': 12,  # Tamanho adequado para leitura de gráficos
+                        'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
+                        'axes.titlesize': 14,  # Tamanho do título do gráfico
+                        'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
+                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
+                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                        'lines.linewidth': 2,  # Espessura das linhas dos gráficos
+                        'lines.markersize': 6,  # Tamanho dos marcadores
+                        'legend.fontsize': 10,  # Tamanho da legenda
+                        'legend.frameon': False,  # Remove a moldura ao redor da legenda
+                        'legend.loc': 'best',  # Melhor posição automática para a legenda
+                        'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
+                        'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
+                        'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
+                        }
                 
-                    # plt.rcParams.update(custom_style)
+                    plt.rcParams.update(custom_style)
 
-                    # tab1,tab2,tab3,tab4,tab5,tab7 = st.tabs(["Pressure", "Temperature","HL","Vsm","Densities","Z"])
+                    tab1,tab2,tab3,tab4,tab5,tab7 = st.tabs(["Pressure", "Temperature","HL","Vsm","Densities","Z"])
 
-                    # fig1, ax1 = plt.subplots()
-                    # ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
-                    # ax1.scatter(comp[-1],pressures[-1],c='#1D2D50',zorder=4,label='Separator')
-                    # ax1.scatter(comp[0],pressures[0],c='#87CEEB',zorder=5,label='Reservoir')
-                    # ax1.plot(comp,pressures,label=f'Pressure',c='k',zorder=3)
-                    # ax1.set_xlabel(f'Lenght pipe [$m$]')
-                    # ax1.set_ylabel(f'Pressure [$bar$]')
-                    # ax1.set_title(f'Fluid pressure across the pipe')
-                    # ax1.grid(alpha=0.5,zorder=1)
-                    # ax1.margins(x=0.1, y=0.1)
-                    # ax1.legend()
-                    # tab1.pyplot(fig1)
+                    fig1, ax1 = plt.subplots()
+                    ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
+                    ax1.scatter(comp[-1],pressures[-1],c='#1D2D50',zorder=4,label='Separator')
+                    ax1.scatter(comp[0],pressures[0],c='#87CEEB',zorder=5,label='Reservoir')
+                    ax1.plot(comp,pressures,label=f'Pressure',c='k',zorder=3)
+                    ax1.set_xlabel(f'Lenght pipe [$m$]')
+                    ax1.set_ylabel(f'Pressure [$bar$]')
+                    ax1.set_title(f'Fluid pressure across the pipe')
+                    ax1.grid(alpha=0.5,zorder=1)
+                    ax1.margins(x=0.1, y=0.1)
+                    ax1.legend()
+                    tab1.pyplot(fig1)
 
-                    # fig2, ax2 = plt.subplots()
-                    # ax2.plot(comp,temperatures,label=f'Temperature',c='k',zorder=2)
-                    # ax2.scatter(comp[-1],temperatures[-1],c='#1D2D50',zorder=3,label='Separator')
-                    # ax2.scatter(comp[0],temperatures[0],c='#87CEEB',zorder=4,label='Reservoir')
-                    # ax2.set_xlabel(f'Lenght pipe [$m$]')
-                    # ax2.set_ylabel(f'Temperature [$ºC$]')
-                    # ax2.set_title(f'Fluid temperature across the pipe')
-                    # ax2.grid(alpha=0.5,zorder=1)
-                    # ax2.margins(x=0.1, y=0.1)
-                    # ax2.legend()
-                    # tab2.pyplot(fig2)
+                    fig2, ax2 = plt.subplots()
+                    ax2.plot(comp,temperatures,label=f'Temperature',c='k',zorder=2)
+                    ax2.scatter(comp[-1],temperatures[-1],c='#1D2D50',zorder=3,label='Separator')
+                    ax2.scatter(comp[0],temperatures[0],c='#87CEEB',zorder=4,label='Reservoir')
+                    ax2.set_xlabel(f'Lenght pipe [$m$]')
+                    ax2.set_ylabel(f'Temperature [$ºC$]')
+                    ax2.set_title(f'Fluid temperature across the pipe')
+                    ax2.grid(alpha=0.5,zorder=1)
+                    ax2.margins(x=0.1, y=0.1)
+                    ax2.legend()
+                    tab2.pyplot(fig2)
 
-                    # fig3, ax3 = plt.subplots()
-                    # ax3.plot(comp,HLS,label=f'Fluid holdup',c='k',zorder=2)
-                    # ax3.scatter(comp[-1],HLS[-1],c='#1D2D50',zorder=3,label='Separator')
-                    # ax3.scatter(comp[0],HLS[0],c='#87CEEB',zorder=4,label='Reservoir')
-                    # ax3.set_xlabel(f'Lenght pipe [$m$]')
-                    # ax3.set_ylabel(f'Hl')
-                    # ax3.set_title(f'Fluid Holdup across the pipe')
-                    # ax3.grid(alpha=0.5,zorder=1)
-                    # ax3.margins(x=0.1, y=0.1)
-                    # ax3.legend()
-                    # tab3.pyplot(fig3)
+                    fig3, ax3 = plt.subplots()
+                    ax3.plot(comp,HLS,label=f'Fluid holdup',c='k',zorder=2)
+                    ax3.scatter(comp[-1],HLS[-1],c='#1D2D50',zorder=3,label='Separator')
+                    ax3.scatter(comp[0],HLS[0],c='#87CEEB',zorder=4,label='Reservoir')
+                    ax3.set_xlabel(f'Lenght pipe [$m$]')
+                    ax3.set_ylabel(f'Hl')
+                    ax3.set_title(f'Fluid Holdup across the pipe')
+                    ax3.grid(alpha=0.5,zorder=1)
+                    ax3.margins(x=0.1, y=0.1)
+                    ax3.legend()
+                    tab3.pyplot(fig3)
 
-                    # fig4, ax4 = plt.subplots()
-                    # ax4.plot(comp,VSMS,label=f'Fluid velocity',c='k',zorder=2)
-                    # ax4.scatter(comp[-1],VSMS[-1],c='#1D2D50',zorder=3,label='Separator')
-                    # ax4.scatter(comp[0],VSMS[0],c='#87CEEB',zorder=4,label='Reservoir')
-                    # ax4.set_xlabel(f'Lenght pipe [$m$]')
-                    # ax4.set_ylabel(f'Fluid velocity [$m/s$]')
-                    # ax4.set_title(f'Fluid velocity across the pipe')
-                    # ax4.grid(alpha=0.5,zorder=1)
-                    # ax4.margins(x=0.1, y=0.1)
-                    # ax4.legend()
-                    # tab4.pyplot(fig4)
+                    fig4, ax4 = plt.subplots()
+                    ax4.plot(comp,VSMS,label=f'Fluid velocity',c='k',zorder=2)
+                    ax4.scatter(comp[-1],VSMS[-1],c='#1D2D50',zorder=3,label='Separator')
+                    ax4.scatter(comp[0],VSMS[0],c='#87CEEB',zorder=4,label='Reservoir')
+                    ax4.set_xlabel(f'Lenght pipe [$m$]')
+                    ax4.set_ylabel(f'Fluid velocity [$m/s$]')
+                    ax4.set_title(f'Fluid velocity across the pipe')
+                    ax4.grid(alpha=0.5,zorder=1)
+                    ax4.margins(x=0.1, y=0.1)
+                    ax4.legend()
+                    tab4.pyplot(fig4)
 
-                    # fig5, ax5 = plt.subplots()
-                    # ax5.plot(comp,densities,label=f'Fluid density',c='k',zorder=2)
-                    # ax5.scatter(comp[-1],densities[-1],c='#1D2D50',zorder=3,label='Separator')
-                    # ax5.scatter(comp[0],densities[0],c='#87CEEB',zorder=4,label='Reservoir')
-                    # ax5.set_xlabel(f'Lenght pipe [$m$]')
-                    # ax5.set_ylabel(f'Density [Kg/m³]')
-                    # ax5.set_title(f'Fluid density across the pipe')
-                    # ax5.grid(alpha=0.5,zorder=1)
-                    # ax5.margins(x=0.1, y=0.1)
-                    # ax5.legend()
-                    # tab5.pyplot(fig5)
+                    fig5, ax5 = plt.subplots()
+                    ax5.plot(comp,densities,label=f'Fluid density',c='k',zorder=2)
+                    ax5.scatter(comp[-1],densities[-1],c='#1D2D50',zorder=3,label='Separator')
+                    ax5.scatter(comp[0],densities[0],c='#87CEEB',zorder=4,label='Reservoir')
+                    ax5.set_xlabel(f'Lenght pipe [$m$]')
+                    ax5.set_ylabel(f'Density [Kg/m³]')
+                    ax5.set_title(f'Fluid density across the pipe')
+                    ax5.grid(alpha=0.5,zorder=1)
+                    ax5.margins(x=0.1, y=0.1)
+                    ax5.legend()
+                    tab5.pyplot(fig5)
 
-                    # fig7, ax7 = plt.subplots()
-                    # ax7.plot(comp,Zs,label=f'Factor Z of the fluid',c='k',zorder=2)
-                    # ax7.scatter(comp[-1],Zs[-1],c='#1D2D50',zorder=3,label='Separator')
-                    # ax7.scatter(comp[0],Zs[0],c='#87CEEB',zorder=4,label='Reservoir')
-                    # ax7.set_xlabel(f'Lenght of the pipe [$m$]')
-                    # ax7.set_ylabel(f'Z')
-                    # ax7.set_title(f'Factor Z across the pipe')
-                    # ax7.grid(alpha=0.5,zorder=1)
-                    # ax7.margins(x=0.1, y=0.1)
-                    # ax7.legend()
-                    # tab7.pyplot(fig7) 
+                    fig7, ax7 = plt.subplots()
+                    ax7.plot(comp,Zs,label=f'Factor Z of the fluid',c='k',zorder=2)
+                    ax7.scatter(comp[-1],Zs[-1],c='#1D2D50',zorder=3,label='Separator')
+                    ax7.scatter(comp[0],Zs[0],c='#87CEEB',zorder=4,label='Reservoir')
+                    ax7.set_xlabel(f'Lenght of the pipe [$m$]')
+                    ax7.set_ylabel(f'Z')
+                    ax7.set_title(f'Factor Z across the pipe')
+                    ax7.grid(alpha=0.5,zorder=1)
+                    ax7.margins(x=0.1, y=0.1)
+                    ax7.legend()
+                    tab7.pyplot(fig7) 
                     
-                    # st.divider()
+                    st.divider()
 
                     
     
-                    # results1 = [P,T,pump]
-                    # colums = ['Values']
-                    # index1 = ["Pressure at separator (bar)", "Temperature at separator (ºC)","Pump increment (bar)"]
-                    # df_results_1 = pd.DataFrame(results1,index=index1,columns=colums)
+                    results1 = [P,T,pump]
+                    colums = ['Values']
+                    index1 = ["Pressure at separator (bar)", "Temperature at separator (ºC)","Pump increment (bar)"]
+                    df_results_1 = pd.DataFrame(results1,index=index1,columns=colums)
 
 
-                    # grav_med = (sum(grav)/(len(variables[0][0])))/100000
-                    # fric_med = (sum(fric)/(len(variables[0][0])))/100000
-                    # total_med = sum((grav_med,fric_med))
-                    # results_2 = [grav_med,fric_med,total_med]
-                    # index_2 = ["Gravitational lose (bar/m)","Friccional lose (bar/m)","Total lose (bar/m)"]
+                    grav_med = (sum(grav)/(len(variables[0][0])))/100000
+                    fric_med = (sum(fric)/(len(variables[0][0])))/100000
+                    total_med = sum((grav_med,fric_med))
+                    results_2 = [grav_med,fric_med,total_med]
+                    index_2 = ["Gravitational lose (bar/m)","Friccional lose (bar/m)","Total lose (bar/m)"]
 
-                    # df_results_2 = pd.DataFrame(results_2,index=index_2,columns=colums)
+                    df_results_2 = pd.DataFrame(results_2,index=index_2,columns=colums)
 
-                    # st.subheader('Tables with the main results')
+                    st.subheader('Tables with the main results')
 
-                    # col1,col2 = st.columns(2)
-                    # with col1:
-                    #     st.dataframe(df_results_1.style.format("{:.3f}"))
-                    # with col2:
-                    #     st.dataframe(df_results_2.style.format("{:.3f}"))
+                    col1,col2 = st.columns(2)
+                    with col1:
+                        st.dataframe(df_results_1.style.format("{:.3f}"))
+                    with col2:
+                        st.dataframe(df_results_2.style.format("{:.3f}"))
 
-                    # st.divider()
+                    st.divider()
 
                 except:
                     st.error("Error when simulating")
