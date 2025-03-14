@@ -651,7 +651,7 @@ def page2():
                         st.success(f'The {options[i]} model finished the simulation without errors')
 
 
-                    # comp = np.arange(0,len(variables[0][0][2][0]),1)
+                    comp = np.arange(0,len(variables[0][0][2][0]),1)
     
                     # for i in range(len(variables)):
                     #     pressures[i].append(variables[i][0][2][0])
