@@ -141,7 +141,7 @@ def homogeneous_simulation( fluid, line, temp) -> tuple:
 def homogeneous_simulation_pump( fluid, line, temp) -> tuple:
 
     step = 1
-    i = 0
+    i = 1
     fluid_simulation = copy(fluid)
 
     while round(i,3) != line.L+step:

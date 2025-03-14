@@ -705,19 +705,19 @@ def page2():
                 st.write(len(comp),len(pressures[2][0]))
                 st.write(len(comp),len(pressures[3][0]))
                 st.write(len(pressures))
-                
+
 
                 fig1, ax1 = plt.subplots()
                 for i in range(len(pressures)):
                     ax1.plot(comp,pressures[i+1][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
-                # ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
-                # ax1.set_xlabel(f'Lenght pipe [$m$]')
-                # ax1.set_ylabel(f'Pressure [$bar$]')
-                # ax1.set_title(f'Fluid pressure across the pipe')
-                # ax1.grid(alpha=0.5,zorder=1)
-                # ax1.margins(x=0.1, y=0.1)
-                # ax1.legend()
-                # tab1.pyplot(fig1)
+                ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
+                ax1.set_xlabel(f'Lenght pipe [$m$]')
+                ax1.set_ylabel(f'Pressure [$bar$]')
+                ax1.set_title(f'Fluid pressure across the pipe')
+                ax1.grid(alpha=0.5,zorder=1)
+                ax1.margins(x=0.1, y=0.1)
+                ax1.legend()
+                tab1.pyplot(fig1)
 
 
                 # fig2, ax2 = plt.subplots()
