@@ -669,22 +669,21 @@ def page2():
                     for i in range(len(variables[0][0][2][1])):
                         copy_fluid.T = temperatures[0][0][i]
                         bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
-
-                    custom_style = {
-                        'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                        'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
-                        'axes.titlesize': 14,  # Tamanho do título do gráfico
-                        'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
-                        'lines.linewidth': 2,  # Espessura das linhas dos gráficos
-                        'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 9,  # Tamanho da legenda
-                        'legend.frameon': False,  # Remove a moldura ao redor da legenda
-                        'legend.loc': 'best',  # Melhor posição automática para a legenda
-                        'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
-                        'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
-                        'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
+                        custom_style = {
+                            'font.size': 12,
+                            'axes.labelsize': 12,
+                            'axes.titlesize': 14,
+                            'axes.linewidth': 1.5,
+                            'xtick.labelsize': 12,
+                            'ytick.labelsize': 12,
+                            'lines.linewidth': 2,
+                            'lines.markersize': 6,
+                            'legend.fontsize': 9,
+                            'legend.frameon': False,
+                            'legend.loc': 'best',
+                            'figure.figsize': (8, 6),
+                            'savefig.dpi': 600,
+                            'savefig.bbox': 'tight',
                         }
                 
                 
@@ -703,6 +702,7 @@ def page2():
 
                     fig1, ax1 = plt.subplots()
                     for i in range(len(pressures)):
+                        st.write((len(comp,pressures[i][0])))
                         ax1.plot(comp,pressures[i][0],label=f'Pressure with {options[i]} model.',c=colors[i] ,zorder=3)
                     ax1.plot(comp, bubble_points, lw =2 , ls='--',c='#F08080' ,label='Bubble pressure',zorder=2)
                     ax1.set_xlabel(f'Lenght pipe [$m$]')
