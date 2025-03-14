@@ -705,6 +705,7 @@ def page2():
                 st.write(len(comp),len(pressures[2][0]))
                 st.write(len(comp),len(pressures[3][0]))
                 st.write(len(pressures))
+                
 
                 fig1, ax1 = plt.subplots()
                 for i in range(len(pressures)):
