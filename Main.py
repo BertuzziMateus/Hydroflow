@@ -634,7 +634,7 @@ def page2():
             Zs.append([])
             grav.append([])
             fric.append([])
-            #ace.append([])
+            ace.append([])
         
         with st.container():
             with st.spinner('Simulating...'):
