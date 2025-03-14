@@ -653,17 +653,17 @@ def page2():
 
                     comp = np.arange(0,len(variables[0][0][2][0]),1)
     
-                    # for i in range(len(variables)):
-                    #     pressures[i].append(variables[i][0][2][0])
-                    #     temperatures[i].append(variables[i][0][2][1])
-                    #     HLS[i].append(variables[i][0][2][2])
-                    #     VSMS[i].append(variables[i][0][2][3])
-                    #     densities[i].append(variables[i][0][2][6])
-                    #     viscosities[i].append(variables[i][0][2][7])
-                    #     Zs[i].append(variables[i][0][2][8])
-                    #     grav[i].append(variables[i][0][2][9])
-                    #     fric[i].append(variables[i][0][2][10])
-                    #     #ace[i].append(variables[i][0][2][11])
+                    for i in range(len(variables)):
+                        pressures[i].append(variables[i][0][2][0])
+                        temperatures[i].append(variables[i][0][2][1])
+                        HLS[i].append(variables[i][0][2][2])
+                        VSMS[i].append(variables[i][0][2][3])
+                        densities[i].append(variables[i][0][2][6])
+                        viscosities[i].append(variables[i][0][2][7])
+                        Zs[i].append(variables[i][0][2][8])
+                        grav[i].append(variables[i][0][2][9])
+                        fric[i].append(variables[i][0][2][10])
+                        ace[i].append(variables[i][0][2][11])
                         
                     # bubble_points = []
                     # for i in range(len(variables[0][0][2][1])):
