@@ -9,21 +9,21 @@ from presfil_simulation_code import*
 
 
 fluid = Fluid_model(
-    P = 225.086, #bar  
-    T = 86,#C 
-    Dg = 0.71,
+    P = 223.128, #bar  
+    T = 80,#C 
+    Dg = 0.7,
     Do = 0,
-    API = 19.20,
-    RGL = 90.7993,# sM^3/sM^3 
+    API = 32.8,
+    RGL = 138.033,# sM^3/sM^3 
     BSW = 0, # %
-    rate = 1092.04/86400 # m^3 /s
+    rate = 647.87/86400 # m^3 /s
     ) 
 
-line1 = pipe(Dh = 2.441* 0.0254, e =  0.00001 * 0.0254, L = 2311, angle = 90 ,direction='Uphill' )
+line1 = pipe(Dh = 2.441* 0.0254, e =  0.0001 * 0.0254, L = 2150, angle = 90 ,direction='Uphill' )
 
-temp1 = Extern_Temperature(T1 = 25, T2 = 86, H = 2311, TEC = 1)
+temp1 = Extern_Temperature(T1 = 15, T2 = 80, H = 2150, TEC = 12.5)
 
-#Modelos = ['Homogeneous','Hagedorn','Beggs_Brill','Bendisken','Bhagwat']
+#'Beggs_Brill'
 Modelos = ['Hagedorn','Beggs_Brill']
 results = dict([(models,()) for models in Modelos])
 

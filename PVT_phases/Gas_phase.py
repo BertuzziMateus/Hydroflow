@@ -1,5 +1,54 @@
 import numpy as np
+from scipy.optimize import fsolve
+from scipy.optimize import brentq
+from scipy.optimize import newton
+
 from conversions import *
+
+def z_hall(fluid_model) -> float:
+
+    def equation(y, fluid_model):
+        T_pr = 1 / fluid_model.T_pr
+        A = 14.76 * T_pr - 9.76 * T_pr**2 + 4.58 * T_pr**3
+        B = 90.7 * T_pr - 242.2 * T_pr**2 + 42.4 * T_pr**3
+        term1 = -0.06125 * fluid_model.P_pr * T_pr * np.exp(-1.2 * (1 - T_pr)**2)
+        term2 = (y + y**2 + y**3 - y**4) / (1 - y)**3
+        term3 = -A * y**2
+        term4 = B * y**(2.18 + 2.82 * T_pr)  # Corrected exponent
+        return term1 + term2 + term3 + term4
+
+    def equation_derivative(y, fluid_model):
+        T_pr = 1 / fluid_model.T_pr
+        A = 14.76 * T_pr - 9.76 * T_pr**2 + 4.58 * T_pr**3
+        B = 90.7 * T_pr - 242.2 * T_pr**2 + 42.4 * T_pr**3
+        exponent = 2.18 + 2.82 * T_pr  # Corrected exponent
+        # Derivative of term2: (y + y² + y³ - y⁴)/(1 - y)^3
+        dy_term2 = (1 + 2*y + 3*y**2 - 4*y**3) * (1 - y)**3 + (y + y**2 + y**3 - y**4) * 3*(1 - y)**2
+        dy_term2 = dy_term2 / (1 - y)**6  # Simplified derivative of term2
+        # Derivative of term3: -A y²
+        dy_term3 = -2 * A * y
+        # Derivative of term4: B y^(exponent)
+        dy_term4 = B * exponent * y**(exponent - 1)
+        # Sum all derivatives (term1 derivative is 0 as it's constant w.r. to y)
+        return dy_term2 + dy_term3 + dy_term4
+
+    T_pr = 1 / fluid_model.T_pr
+
+    Y_initial = 0.0125 * fluid_model.P_pr * T_pr * np.exp(-1.2 * (1 - T_pr)**2)
+
+
+    y = newton(
+        func=lambda y: equation(y, fluid_model),
+        x0=Y_initial,
+        fprime=lambda y: equation_derivative(y, fluid_model),
+        maxiter=1000,
+        tol=1e-12
+    )
+
+    term1_val = 0.06125 * fluid_model.P_pr * T_pr * np.exp(-1.2 * (1 - T_pr)**2)
+    Z = term1_val / y
+
+    return Z
 
 
 def z( Model  ) -> float:
@@ -17,7 +66,6 @@ def Bg( Model ) -> float: # m3/sm3
     T = C_to_K(Model)
     P = Bar_to_pa(Model)/1000
     bg_m3 = 0.350958*((z(Model)*T)/P)
-    #bg_ft3 = (((14.7)/(520))*z(Model)*((T)/(P)))
     return bg_m3
 
 def Gas_density( Model  ) -> float: #kg/m³
@@ -57,6 +105,25 @@ def Gas_Viscosity( Model  ) -> float: #cP  Dempsey (1965)
         )
 
     μ = μ_g * np.exp(A) /  Model.T_pr
+
+    return μ
+
+def gas_viscosity_lee(fluid_model):
+
+    temperature_c = fluid_model.T
+    temperature_r = temperature_c *(9/5) + 491.67
+    
+    pg = Gas_density(fluid_model)*0.062427960576145
+
+    Mg = 0.0289655* fluid_model.Dg *1000
+    
+    kv = ((9.379 + 0.0160*Mg)*temperature_r**1.5)/(209.2 + 19.26 * Mg + temperature_r)
+
+    xv = 3.448 + 986.4/temperature_r + 0.01009 * Mg
+
+    yv = 2.4 - 0.2 *xv
+
+    μ = (10**-4) * kv * (np.exp(xv*(pg/62.4)**yv))
 
     return μ
 

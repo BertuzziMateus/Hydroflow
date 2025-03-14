@@ -20,8 +20,12 @@ def Situ_flow_phase( pvt ) -> list:
 
     if pvt.BSW == 0 :
         gas_flow = (pvt.RGO - pvt.Rs)*pvt.Bg*oil_sc
+        if gas_flow < 0:
+            gas_flow = 0
     elif pvt.BSW > 0:
         gas_flow = ( gas_sc - oil_sc*pvt.Rs - water_sc*pvt.Rsw)*pvt.Bg
+        if gas_flow < 0:
+            gas_flow = 0
 
     return [ water_flow, oil_flow, gas_flow ]
 
@@ -80,11 +84,12 @@ def Gas_liquid_sigma( pvt ) -> float:
     fwc,_ = Fractions(pvt)
     return ( pvt.sigma_og * (1 - fwc) + pvt.sigma_wg*fwc)
 
-def Mass_flow_fractions( pvt ) -> list:
+def Mass_flow_fractions( pvt,pipe) -> list:
     fwc = Fractions(pvt)[0]
-    mass_flow_gas = pvt.gas_rho* Gas_flow(pvt) # kg /s
-    mass_flow_oil = pvt.oil_rho*(1-fwc)*Situ_flow_phase(pvt)[1] # kg /s
-    mass_flow_water = pvt.water_rho*(fwc)*Situ_flow_phase(pvt)[0] # kg /s
+    water_flow, oil_flow, gas_flow  = Situ_flow_phase(pvt)
+    mass_flow_gas = pvt.gas_rho* gas_flow # kg /s
+    mass_flow_oil = pvt.oil_rho*(1-fwc)*oil_flow # kg /s
+    mass_flow_water = pvt.water_rho*(fwc)*water_flow # kg /s
     mass_flow_liquid = mass_flow_oil + mass_flow_water # kg /s
     return [ mass_flow_liquid, mass_flow_oil, mass_flow_gas]
 

@@ -5,7 +5,7 @@ def briggs_simulation( fluid, line, temp)  -> tuple:
 
     fluid_simulation = copy(fluid)
     step = 1
-    i = 0
+    i = 1
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
 
     while round(i,3) != line.L+step:
@@ -15,7 +15,9 @@ def briggs_simulation( fluid, line, temp)  -> tuple:
 
         if temp != None:
 
-            if (line.angle/(np.pi / 180)) == 90 or 0:
+            angle = round(line.angle/(np.pi / 180),2)
+
+            if angle == 90 or 0:
                 H = line.L - round(i,3)
             else:
                 H = (line.L - round(i,3))*np.sin(line.angle)
@@ -116,8 +118,10 @@ def briggs_simulation( fluid, line, temp)  -> tuple:
 
             
         elif temp == None:
+
+            angle = round(line.angle/(np.pi / 180),2)
                  
-            if (line.angle/(np.pi / 180)) == 90 or 0:
+            if angle == 90 or 0:
                 H = line.L - round(i,3)
             else:
                 H = (line.L - round(i,3))*np.sin(line.angle)

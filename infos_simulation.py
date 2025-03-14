@@ -2,6 +2,7 @@ from classes_.Data_PVT import PVT
 from classes_.Data_flow import *
 from PVT_phases.Water_phase import *
 from PVT_phases.Oil_phase_standing import *
+from PVT_phases.Oil_phase_inidia_case import *
 from PVT_phases.Gas_phase import *
 from flow.flows import *
 from models.homogeneous import * 
@@ -18,17 +19,17 @@ def fluid_pvt(fluid) -> tuple:
     bg = Bg(fluid)
     bo = Bo_standing(fluid)
     bw = Bw(fluid)
-    rs = Rs_standing(fluid)*0.17810760667903525  # sm^3 / m^3
+    rs = Rs_lasater(fluid)*0.17810760667903525  # sm^3 / m^3
     rsw = Rsw_pure(fluid)*0.17810760667903525  # sm^3 / m^3
     water_rho = Water_density(fluid)*16.01846337396014 # Kg / m^3
-    oil_rho = Oil_Density_standing(fluid)*16.01846337396014 # Kg / m^3
+    oil_rho = oil_density(fluid)*16.01846337396014 # Kg / m^3
     gas_rho = Gas_density(fluid) # Kg / m^3
     water_viscosity = Water_viscosity(fluid) / 1000  # Pa.s 
-    oil_viscosity = Oil_Viscosity_standing(fluid) / 1000 # Pa.s 
-    gas_viscosity = Gas_Viscosity(fluid) / 1000 # Pa.s 
-    Z = z(fluid)
-    sigma_o_g =  0.00841 # N/m
-    sigma_w_g = 0.004 # N/m
+    oil_viscosity = oil_viscosity_paper(fluid) / 1000 # Pa.s 
+    gas_viscosity = gas_viscosity_lee(fluid) / 1000 # Pa.s 
+    Z = z_hall(fluid)
+    sigma_o_g = gas_oil_interfacial_tension(fluid) # N/m
+    sigma_w_g = gas_water_interfacial_tension(fluid) # N/m
     return (bg, bo, bw, rs, rsw, water_rho, oil_rho,
             gas_rho, water_viscosity, oil_viscosity,
             gas_viscosity, Z, sigma_o_g, sigma_w_g)
@@ -62,7 +63,7 @@ def flow_infos(fluid, line ) -> tuple:
     sigma_gl = Gas_liquid_sigma(pvt)
     fwc, λl = Fractions(pvt)
     liquid_cp = cp_oil(fluid)* (1 - fwc) + cp_water(fluid)*fwc
-    flow_liquid_mass, flow_oil_mass , flow_gas_mass = Mass_flow_fractions(pvt)
+    flow_liquid_mass, flow_oil_mass , flow_gas_mass = Mass_flow_fractions(pvt,line)
     
     return(
         mix_velocity, liquid_velocity, gas_velocity,

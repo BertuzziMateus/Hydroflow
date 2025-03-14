@@ -238,7 +238,6 @@ def gravitational_gradient_briggs( Flow_info ,  tubing ) -> float:
 
 def Ek_briggs( Flow_info ,  tubing ) -> float:
     Ek = ( (slip_density_briggs( Flow_info, tubing )* Flow_info.vm* Flow_info.vsg) / (Flow_info.pressure*100000) )
-    Ek = 0
     return Ek
 
 def total_gradient_briggs( Flow_info,  tubing ) -> float:

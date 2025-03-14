@@ -5,8 +5,7 @@ def HB_simulation( fluid, line, temp,) -> tuple:
 
     fluid_simulation = copy(fluid)
     step = 1
-    i = 0
-    vel = 0
+    i = 1
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
 
 
@@ -17,7 +16,9 @@ def HB_simulation( fluid, line, temp,) -> tuple:
 
         if temp != None:
 
-            if (line.angle/(np.pi / 180)) == 90 or 0:
+            angle = round(line.angle/(np.pi / 180),2)
+
+            if angle == 90 or 0:
                 H = line.L - round(i,3)
             else:
                 H = (line.L - round(i,3))*np.sin(line.angle)
@@ -98,17 +99,15 @@ def HB_simulation( fluid, line, temp,) -> tuple:
 
                 fluid_simulation.T = ( t_inf - term1_temp - (term2_temp*term3_temp) )
                 
-                if i == 0:
-                    kinectic_Hb = 0
-                else:
-                    dif = ((mix_velocity**2 - vel**2))
-                    kinectic_Hb  = (mix_slip_density_HB(flow_info,line)*dif)*step
-                    kinectic_Hb = 0
-
                 presure_fluid = fluid_simulation.P*100000
-                lose_pressure = presure_fluid - (gravitational_gradient_HB(flow_info,line)+friction_gradient_HB(flow_info,line))*step  - kinectic_Hb
-                fluid_simulation.P = lose_pressure/100000
+                
+                pressure_loss_psi = total_Hb(flow_info, line) * step
 
+                lose_pressure = presure_fluid - pressure_loss_psi 
+
+                fluid_simulation.P = lose_pressure / 100000  
+
+       
                 vars[0].append(fluid_simulation.P)
                 vars[1].append(fluid_simulation.T)
                 vars[2].append(Hl)
@@ -120,15 +119,14 @@ def HB_simulation( fluid, line, temp,) -> tuple:
                 vars[8].append(flow_info.z)
                 vars[9].append(gravitational_gradient_HB(flow_info, line))
                 vars[10].append(friction_gradient_HB(flow_info, line))
-                vars[11].append(kinectic_Hb)
-
-                vel = flow_info.vm
-
+                vars[11].append(Ek_briggs_hb(flow_info, line) * total_Hb(flow_info, line))
                 
 
         elif temp == None:
 
-            if (line.angle/(np.pi / 180)) == 90 or 0:
+            angle = round(line.angle/(np.pi / 180),2)
+
+            if angle == 90 or 0:
                 H = line.L - round(i,3)
             else:
                 H = (line.L - round(i,3))*np.sin(line.angle)
@@ -182,16 +180,13 @@ def HB_simulation( fluid, line, temp,) -> tuple:
             else:
                 Hl  = HL_HB(flow_info,line)
                 
-                if i == 0:
-                    kinectic_Hb = 0
-                else:
-                    dif = ((mix_velocity**2 - vel**2))
-                    kinectic_Hb  = (mix_slip_density_HB(flow_info,line)*dif)*step
-                    kinectic_Hb = 0
-
                 presure_fluid = fluid_simulation.P*100000
-                lose_pressure = presure_fluid - (gravitational_gradient_HB(flow_info,line)+friction_gradient_HB(flow_info,line))*step  - kinectic_Hb
-                fluid_simulation.P = lose_pressure/100000
+                
+                pressure_loss_psi = total_Hb(flow_info, line) * step
+
+                lose_pressure = presure_fluid - pressure_loss_psi 
+
+                fluid_simulation.P = lose_pressure / 100000  
 
                 vars[0].append(fluid_simulation.P)
                 vars[1].append(fluid_simulation.T)
@@ -204,8 +199,7 @@ def HB_simulation( fluid, line, temp,) -> tuple:
                 vars[8].append(flow_info.z)
                 vars[9].append(gravitational_gradient_HB(flow_info, line))
                 vars[10].append(friction_gradient_HB(flow_info, line))
-                vars[11].append(kinectic_Hb)
-                vel = flow_info.vm
+                vars[11].append(Ek_briggs_hb(flow_info, line) * total_Hb(flow_info, line))
 
 
                 
@@ -229,8 +223,6 @@ def HB_simulation_pump( fluid, line, temp) -> tuple:
     fluid_simulation = copy(fluid)
     step = 1
     i = 0
-    vel = 0
-
 
     while round(i,3) != line.L+step:
 
@@ -271,20 +263,15 @@ def HB_simulation_pump( fluid, line, temp) -> tuple:
             fluid_simulation.P = lose_pressure/100000
 
         else:
-            Hl  = HL_HB(flow_info,line)
-            
-            if i == 0:
-                kinectic_Hb = 0
-            else:
-                dif = ((mix_velocity**2 - vel**2))
-                kinectic_Hb  = (mix_slip_density_HB(flow_info,line)*dif)*step
-                kinectic_Hb = 0
-
+       
             presure_fluid = fluid_simulation.P*100000
-            lose_pressure = presure_fluid + (gravitational_gradient_HB(flow_info,line)+friction_gradient_HB(flow_info,line))*step  + kinectic_Hb
-            fluid_simulation.P = lose_pressure/100000
+                
+            pressure_loss_psi = total_Hb(flow_info, line) * step
 
-            vel = flow_info.vm
+            lose_pressure = presure_fluid + pressure_loss_psi
+
+            fluid_simulation.P = lose_pressure / 100000  
+
 
         i+= step
 

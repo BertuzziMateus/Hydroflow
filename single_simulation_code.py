@@ -86,7 +86,6 @@ def single_pump_value_teste(fluid, lines, temps, line_pump, mode:str)-> float:
 def single_simulation(fluid, lines, temps,line_pump, mode:str)-> tuple:
 
     incre = round(single_pump_value_teste(fluid,lines,temps,line_pump,mode)*1.1)
-    #incre = 0
     fluid_simulation = copy(fluid)
     vars = [[],[],[],[],[],[],[],[],[],[],[],[]]
     
