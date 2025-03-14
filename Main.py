@@ -688,18 +688,18 @@ def page2():
                         }
                 
                 
-                    # plt.rcParams.update(custom_style)
+                    plt.rcParams.update(custom_style)
 
-                    # tab1,tab2,tab3,tab4,tab5,tab7 = st.tabs(["Pressure", "Temperature","HL","Vsm","Densities","Z"])
+                    tab1,tab2,tab3,tab4,tab5,tab7 = st.tabs(["Pressure", "Temperature","HL","Vsm","Densities","Z"])
                     
-                    # colors ={
-                    #     0:'k',
-                    #     1:'r',
-                    #     2:'g',
-                    #     3:'b',
-                    #     4:'y',
-                    #     5:'c',
-                    # }
+                    colors ={
+                        0:'k',
+                        1:'r',
+                        2:'g',
+                        3:'b',
+                        4:'y',
+                        5:'c',
+                    }
 
                     # fig1, ax1 = plt.subplots()
                     # for i in range(len(pressures)):
