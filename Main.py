@@ -1016,41 +1016,41 @@ def page3():
                 try:
                     T,P,var,pump = simulation(fluid,lines,temps,pump_line,inclined,vertical,horizontal)
                     variables.append(var)
-                    comp = np.arange(0,len(variables[0][0]),1)
+                    # comp = np.arange(0,len(variables[0][0]),1)
 
-                    for i in range(len(variables[0][0])):
-                        pressures.append(variables[0][0][i])
-                        temperatures.append(variables[0][1][i])
-                        HLS.append(variables[0][2][i])
-                        VSMS.append(variables[0][3][i])
-                        densities.append(variables[0][6][i])
-                        viscosities.append(variables[0][7][i])
-                        Zs.append(variables[0][8][i])
-                        grav.append(variables[0][9][i])
-                        fric.append(variables[0][10][i])
-                        #ace.append(variables[0][11][i])
+                    # for i in range(len(variables[0][0])):
+                    #     pressures.append(variables[0][0][i])
+                    #     temperatures.append(variables[0][1][i])
+                    #     HLS.append(variables[0][2][i])
+                    #     VSMS.append(variables[0][3][i])
+                    #     densities.append(variables[0][6][i])
+                    #     viscosities.append(variables[0][7][i])
+                    #     Zs.append(variables[0][8][i])
+                    #     grav.append(variables[0][9][i])
+                    #     fric.append(variables[0][10][i])
+                    #     #ace.append(variables[0][11][i])
 
-                    bubble_points = []
-                    for i in range(len(variables[0][0])):
-                        copy_fluid.T = temperatures[i]
-                        bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
+                    # bubble_points = []
+                    # for i in range(len(variables[0][0])):
+                    #     copy_fluid.T = temperatures[i]
+                    #     bubble_points.append(PB_lasater(copy_fluid)*0.0689475729)
 
-                    custom_style = {
-                        'font.size': 12,  # Tamanho adequado para leitura de gráficos
-                        'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
-                        'axes.titlesize': 14,  # Tamanho do título do gráfico
-                        'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
-                        'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
-                        'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
-                        'lines.linewidth': 2,  # Espessura das linhas dos gráficos
-                        'lines.markersize': 6,  # Tamanho dos marcadores
-                        'legend.fontsize': 10,  # Tamanho da legenda
-                        'legend.frameon': False,  # Remove a moldura ao redor da legenda
-                        'legend.loc': 'best',  # Melhor posição automática para a legenda
-                        'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
-                        'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
-                        'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
-                        }
+                    # custom_style = {
+                    #     'font.size': 12,  # Tamanho adequado para leitura de gráficos
+                    #     'axes.labelsize': 12,  # Tamanho dos rótulos dos eixos
+                    #     'axes.titlesize': 14,  # Tamanho do título do gráfico
+                    #     'axes.linewidth': 1.5,  # Espessura das bordas dos gráficos
+                    #     'xtick.labelsize': 12,  # Tamanho do texto dos ticks no eixo x
+                    #     'ytick.labelsize': 12,  # Tamanho do texto dos ticks no eixo y
+                    #     'lines.linewidth': 2,  # Espessura das linhas dos gráficos
+                    #     'lines.markersize': 6,  # Tamanho dos marcadores
+                    #     'legend.fontsize': 10,  # Tamanho da legenda
+                    #     'legend.frameon': False,  # Remove a moldura ao redor da legenda
+                    #     'legend.loc': 'best',  # Melhor posição automática para a legenda
+                    #     'figure.figsize': (8, 6),  # Tamanho padrão da figura (polegadas)
+                    #     'savefig.dpi': 600,  # Alta resolução para exportação (publicação)
+                    #     'savefig.bbox': 'tight',  # Salva a imagem sem cortar parte do gráfico
+                    #     }
                 
                     # plt.rcParams.update(custom_style)
 
